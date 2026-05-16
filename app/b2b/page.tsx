@@ -1,43 +1,43 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
+import B2BEmailGate from '@/components/B2BEmailGate'
 
 export const metadata: Metadata = {
-  title: 'Bulk & Wholesale Orders — SPORTVIO',
-  description:
-    'Become a SPORTVIO wholesale partner. Buy kids sports sunglasses in bulk at ₹250/unit. Full marketing support included. Build revenue per square foot.',
+  title: 'Wholesale Partner Programme — SPORTVIO',
+  description: 'Exclusive wholesale pricing and marketing support for SPORTVIO partners. Apply for access.',
 }
 
-function HeroB2B() {
+// ─── B2B Content (shown only after email gate) ────────────────────────────────
+
+function B2BHero() {
   return (
-    <section className="relative min-h-[70vh] bg-gradient-to-br from-slate-950 to-[#0f1629] flex items-center overflow-hidden">
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
-      <Navbar />
-      <div className="section-container pt-28 pb-16">
+    <section className="relative bg-ink pt-28 pb-20 overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,_rgba(196,154,60,0.05)_0%,_transparent_70%)] pointer-events-none" />
+      <Navbar announcementOffset={false} />
+      <div className="container-xl">
         <div className="max-w-3xl">
-          <span className="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-500/30 text-orange-400 text-sm font-bold px-4 py-2 rounded-full uppercase tracking-widest mb-6">
-            B2B & Wholesale
-          </span>
-          <h1 className="text-5xl sm:text-6xl font-black text-white tracking-tight leading-tight mb-6">
-            Don't Just Stock Sunglasses.{' '}
-            <span className="gradient-text">Partner With Us.</span>
+          <span className="label-pill mb-6 inline-flex">Wholesale Partner Programme</span>
+          <h1 className="text-5xl sm:text-6xl font-black text-cream-light tracking-tight leading-tight mb-6">
+            Your store's most profitable<br />
+            <span className="text-gradient-gold">square foot.</span>
           </h1>
-          <p className="text-xl text-slate-400 leading-relaxed mb-8 max-w-2xl">
-            We supply premium kids' sports sunglasses at wholesale rates — and then we help you sell
-            every single pair. Marketing support, display fixtures, and sell-through guarantees. No
-            other brand does this.
+          <p className="text-xl text-cream-muted leading-relaxed mb-8 max-w-2xl">
+            We supply premium kids' UV400 sunglasses at wholesale — then we help you
+            sell every single pair. Marketing support, display fixtures, and sell-through
+            guarantees included. No other brand does this.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
               href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20become%20a%20SPORTVIO%20wholesale%20partner"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary"
+              className="btn-gold"
             >
-              💬 WhatsApp for Wholesale Pricing
+              💬 WhatsApp for Custom Quote
             </a>
             <a href="tel:+919876543210" className="btn-outline">
-              📞 Call Our B2B Team
+              📞 Call B2B Team
             </a>
           </div>
         </div>
@@ -46,54 +46,153 @@ function HeroB2B() {
   )
 }
 
-function WhyPartner() {
-  const reasons = [
+function MathSection() {
+  return (
+    <section className="py-16 bg-ink-surface border-y border-ink-border">
+      <div className="container-lg">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          {[
+            { label: 'You buy at', value: '₹250', sub: 'per unit wholesale' },
+            { label: 'You sell at', value: '₹799–₹1,200', sub: 'recommended retail' },
+            { label: 'You earn', value: '₹549–₹950', sub: 'profit per unit' },
+          ].map(({ label, value, sub }) => (
+            <div key={label} className="space-y-1">
+              <div className="text-cream-muted text-sm uppercase tracking-widest">{label}</div>
+              <div className="text-4xl sm:text-5xl font-black text-gradient-gold">{value}</div>
+              <div className="text-cream-muted text-sm">{sub}</div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-10 card-gold p-6 text-center">
+          <p className="text-cream-light">
+            One display rack (under 1 sq. ft.) holding 24 pairs at ₹799 each = up to{' '}
+            <span className="text-gold font-black">₹12,000+ profit</span> per sell-through.
+            Highest revenue per square foot of any kids' category.
+          </p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Tiers() {
+  const tiers = [
     {
-      icon: '💰',
-      title: '200–300% Retail Margin',
-      desc: 'Buy at ₹250. Sell at ₹799–₹1,200. Every pair you sell puts ₹550–₹950 profit in your pocket.',
+      name: 'Starter',
+      units: '100 units',
+      price: '₹250',
+      total: '₹25,000',
+      support: '₹10,000 Marketing Support',
+      highlight: false,
+      features: [
+        '₹10,000 in digital marketing assets',
+        'Branded product posters (print-ready)',
+        'WhatsApp broadcast templates',
+        'Priority restock access',
+        'Dedicated account manager',
+        'GST invoice on all orders',
+      ],
+      cta: 'Start with 100 Units',
     },
     {
-      icon: '📐',
-      title: 'Highest Revenue Per Sq. Ft.',
-      desc: 'Sunglasses take less than 1 sq. ft. of display space. Few categories match this revenue-per-foot ratio.',
+      name: 'Growth',
+      units: '500 units',
+      price: '₹260',
+      total: '₹1,30,000',
+      support: '₹35,000 Marketing Support',
+      highlight: true,
+      features: [
+        '₹35,000 in marketing support',
+        'Custom-branded display collateral',
+        'Instagram Reel content for your store',
+        'In-store standee + poster printing',
+        'Sell-through consultation call',
+        'Priority restock + new SKU first access',
+      ],
+      cta: 'Partner — 500 Units',
     },
     {
-      icon: '📣',
-      title: 'We Market for You',
-      desc: 'We provide marketing materials, social media content, and in-store branding so you don\'t have to.',
-    },
-    {
-      icon: '🔄',
-      title: 'Sell-Through Guarantee',
-      desc: 'On 1,000-unit partner orders, we guarantee to help you sell 400–500 units with our support.',
-    },
-    {
-      icon: '🎯',
-      title: 'Premium Brand = Easy Sale',
-      desc: 'Parents at sports academies, schools, and outdoor shops are already looking for exactly this product.',
-    },
-    {
-      icon: '⚡',
-      title: 'Fast Restock — 7 Days',
-      desc: 'Never run out of stock. Our partners get priority restock shipped within 7 working days.',
+      name: 'Elite',
+      units: '1,000 units',
+      price: '₹270',
+      total: '₹2,70,000',
+      support: 'Sell-Through Guarantee',
+      highlight: false,
+      features: [
+        'Guaranteed help selling 400–500 units',
+        'Premium display fixture (free)',
+        'Full in-store branding setup',
+        'Co-branded Instagram campaigns',
+        '₹70,000+ marketing investment from us',
+        'Dedicated field support visit',
+      ],
+      cta: 'Become Elite Partner',
     },
   ]
 
   return (
-    <section className="py-24 bg-white">
-      <div className="section-container">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight">
-            Why Partner with <span className="text-orange-500">SPORTVIO?</span>
+    <section className="py-24 bg-ink">
+      <div className="container-xl">
+        <div className="text-center mb-14">
+          <span className="label-pill mb-4 inline-flex">Wholesale Pricing</span>
+          <h2 className="text-4xl sm:text-5xl font-black text-cream-light tracking-tight">
+            Choose your <span className="text-gradient-gold">partner tier.</span>
           </h2>
+          <p className="mt-4 text-cream-muted max-w-xl mx-auto">
+            All prices exclusive of GST. GST invoice provided on every order. 50% advance, 50% on dispatch.
+          </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {reasons.map(({ icon, title, desc }) => (
-            <div key={title} className="p-8 rounded-2xl border border-slate-100 hover:border-orange-200 hover:shadow-xl hover:shadow-orange-500/10 transition-all duration-300">
-              <div className="text-4xl mb-4">{icon}</div>
-              <h3 className="text-lg font-black text-slate-900 mb-2">{title}</h3>
-              <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+          {tiers.map(t => (
+            <div
+              key={t.name}
+              className={`rounded-2xl p-8 transition-all duration-300 ${
+                t.highlight
+                  ? 'bg-gold/8 border-2 border-gold/50 shadow-gold'
+                  : 'card hover:border-gold/20'
+              }`}
+            >
+              {t.highlight && (
+                <div className="bg-gold text-ink text-xs font-black px-3 py-1 rounded-full inline-block mb-4">
+                  Most Popular
+                </div>
+              )}
+              <div className="mb-6">
+                <div className="text-cream-muted text-xs uppercase tracking-widest mb-1">{t.name}</div>
+                <div className="text-cream-light font-black text-2xl">{t.units}</div>
+                <div className="flex items-baseline gap-2 mt-2">
+                  <span className={`text-4xl font-black ${t.highlight ? 'text-gradient-gold' : 'text-gold'}`}>{t.price}</span>
+                  <span className="text-cream-muted text-sm">/ unit</span>
+                </div>
+                <div className="text-cream-muted text-sm mt-1">Total: {t.total}</div>
+              </div>
+
+              <div className={`text-sm font-bold mb-5 ${t.highlight ? 'text-gold' : 'text-forest-light'}`}>
+                🎁 {t.support}
+              </div>
+
+              <ul className="space-y-2.5 mb-8">
+                {t.features.map(f => (
+                  <li key={f} className="flex items-start gap-2 text-sm text-cream-muted">
+                    <span className="text-gold flex-shrink-0 mt-0.5">✓</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href={`https://wa.me/919876543210?text=Hi%2C%20I%20want%20the%20${t.name}%20wholesale%20package%20(${t.units})`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`block w-full text-center font-bold py-3.5 rounded-xl transition-all ${
+                  t.highlight
+                    ? 'bg-gold hover:bg-gold-light text-ink shadow-gold-sm'
+                    : 'bg-ink-raised border border-ink-border hover:border-gold/30 text-cream-light'
+                }`}
+              >
+                {t.cta}
+              </a>
             </div>
           ))}
         </div>
@@ -102,111 +201,30 @@ function WhyPartner() {
   )
 }
 
-function PricingTable() {
-  return (
-    <section className="py-24 bg-slate-50">
-      <div className="section-container">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight">
-            Wholesale <span className="text-orange-500">Pricing</span>
-          </h2>
-          <p className="mt-4 text-slate-500 text-lg">Transparent pricing. No hidden costs. GST invoice provided on all orders.</p>
-        </div>
-
-        <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <table className="w-full text-sm">
-            <thead className="bg-slate-900 text-white">
-              <tr>
-                <th className="text-left px-6 py-4 font-bold">Order Tier</th>
-                <th className="text-left px-6 py-4 font-bold">Units</th>
-                <th className="text-left px-6 py-4 font-bold">Price / Unit</th>
-                <th className="text-left px-6 py-4 font-bold">Total Investment</th>
-                <th className="text-left px-6 py-4 font-bold">Marketing Support</th>
-                <th className="text-left px-6 py-4 font-bold">Your Potential Revenue</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {[
-                {
-                  tier: 'Starter', units: '100', price: '₹250', total: '₹25,000',
-                  support: '₹10,000 in marketing assets', revenue: '₹79,900–₹1,20,000',
-                  highlight: false,
-                },
-                {
-                  tier: 'Growth', units: '500', price: '₹260', total: '₹1,30,000',
-                  support: '₹35,000 + content + standees', revenue: '₹3,99,500–₹6,00,000',
-                  highlight: true,
-                },
-                {
-                  tier: 'Elite', units: '1,000', price: '₹270', total: '₹2,70,000',
-                  support: 'Sell-through guarantee + fixtures + in-store branding', revenue: '₹7,99,000–₹12,00,000',
-                  highlight: false,
-                },
-                {
-                  tier: 'Custom', units: '5,000+', price: 'On request', total: 'On request',
-                  support: 'Full partnership programme', revenue: 'Custom projection',
-                  highlight: false,
-                },
-              ].map((row) => (
-                <tr key={row.tier} className={row.highlight ? 'bg-orange-50' : ''}>
-                  <td className={`px-6 py-5 font-bold ${row.highlight ? 'text-orange-600' : 'text-slate-900'}`}>
-                    {row.tier} {row.highlight && <span className="ml-2 bg-orange-500 text-white text-xs px-2 py-0.5 rounded-full">Most Popular</span>}
-                  </td>
-                  <td className="px-6 py-5 text-slate-700">{row.units}</td>
-                  <td className="px-6 py-5 font-semibold text-slate-900">{row.price}</td>
-                  <td className="px-6 py-5 text-slate-700">{row.total}</td>
-                  <td className="px-6 py-5 text-slate-600">{row.support}</td>
-                  <td className="px-6 py-5 text-green-600 font-bold">{row.revenue}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <p className="mt-4 text-slate-400 text-sm text-center">
-          * Revenue projections based on selling at ₹799–₹1,200 retail. Actual results depend on local market and execution.
-        </p>
-
-        <div className="mt-12 text-center">
-          <a
-            href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20know%20more%20about%20wholesale%20pricing"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary"
-          >
-            Get Your Wholesale Catalogue →
-          </a>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 function WhoIsThisFor() {
   const segments = [
-    { icon: '👓', title: 'Optical Shops', desc: 'Add a sports category. Your existing customers will love UV-certified sports options for their kids.' },
-    { icon: '🏏', title: 'Sports Academies', desc: 'Offer equipment your young athletes actually need. Bulk pricing for 10+ pairs with co-branding.' },
-    { icon: '🏫', title: 'Schools & PTAs', desc: 'Ideal for sports days, prizes, and canteen stocking. Minimum 20 pairs. Invoice available.' },
-    { icon: '🛍️', title: 'Kids Boutiques', desc: 'A premium sports eyewear range that completes your store\'s active-kid offering.' },
-    { icon: '🏪', title: 'Multi-Brand Retailers', desc: 'Stock a brand with 200%+ gross margin and dedicated marketing support from us.' },
-    { icon: '📦', title: 'Online Resellers', desc: 'Sell on Amazon, Meesho, or your own D2C store. We provide catalogue images and A+ content.' },
+    { icon: '👓', title: 'Optical Shops', desc: 'Add a high-margin sports category to your existing walk-in customers.' },
+    { icon: '🏏', title: 'Sports Academies', desc: 'Supply gear your athletes actually need. Co-branded options from 50 units.' },
+    { icon: '🏫', title: 'Schools & PTAs', desc: 'Sports day prizes, annual day gifts, canteen stocking. GST invoice available.' },
+    { icon: '🛍️', title: 'Kids Boutiques', desc: 'A premium eyewear range that completes your active-kids product mix.' },
+    { icon: '📦', title: 'Online Resellers', desc: 'Sell on Amazon, Meesho, or your own D2C. We provide catalogue + A+ content.' },
+    { icon: '🏪', title: 'Multi-Brand Stores', desc: '200%+ gross margin. Better than most FMCG categories you currently stock.' },
   ]
 
   return (
-    <section className="py-24 bg-slate-950">
-      <div className="section-container">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="section-badge">Perfect For</span>
-          <h2 className="text-4xl sm:text-5xl font-black text-white tracking-tight mt-4">
-            Who is This <span className="gradient-text">Programme For?</span>
+    <section className="py-24 bg-ink-surface border-y border-ink-border">
+      <div className="container-xl">
+        <div className="text-center mb-14">
+          <h2 className="text-4xl sm:text-5xl font-black text-cream-light tracking-tight">
+            Who this programme is <span className="text-gradient-gold">built for.</span>
           </h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {segments.map(({ icon, title, desc }) => (
-            <div key={title} className="card-glass p-8 rounded-2xl hover:border-orange-500/30 transition-all">
-              <div className="text-4xl mb-4">{icon}</div>
-              <h3 className="text-white font-black text-lg mb-2">{title}</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">{desc}</p>
+            <div key={title} className="card p-7 hover:border-gold/20 transition-all">
+              <div className="text-3xl mb-4">{icon}</div>
+              <h3 className="text-cream-light font-black text-lg mb-2">{title}</h3>
+              <p className="text-cream-muted text-sm leading-relaxed">{desc}</p>
             </div>
           ))}
         </div>
@@ -217,36 +235,33 @@ function WhoIsThisFor() {
 
 function HowItWorks() {
   const steps = [
-    { n: '01', title: 'Contact Us', desc: 'WhatsApp or call us. Tell us about your store and which tier interests you.' },
-    { n: '02', title: 'Get Your Sample Kit', desc: 'We send you 2–3 sample pairs so you can see and feel the quality yourself. (Sample cost refunded on first order.)' },
-    { n: '03', title: 'Place Your Order', desc: 'Confirm your quantity. Pay 50% advance. We dispatch within 5 working days.' },
-    { n: '04', title: 'We Set You Up', desc: 'We send display materials, product images, social content, and pricing cards. Your store is ready.' },
-    { n: '05', title: 'Sell & Reorder', desc: 'Start selling. Call us for restocks — priority dispatch for partners. We call you monthly to check in.' },
+    { n: '01', title: 'WhatsApp or Call Us', desc: 'Tell us about your store and which tier you\'re interested in. We respond within 2 hours.' },
+    { n: '02', title: 'Get a Free Sample Kit', desc: 'We send 2–3 pairs so you can feel the quality. Sample cost is refunded on your first order.' },
+    { n: '03', title: 'Place Your Order', desc: '50% advance, 50% on dispatch. We ship within 5 working days with full tracking.' },
+    { n: '04', title: 'We Set You Up', desc: 'Display materials, product images, price cards, and social content — all delivered.' },
+    { n: '05', title: 'Sell & Restock', desc: 'Priority restock for partners. Monthly check-in call from our team to help you sell.' },
   ]
 
   return (
-    <section className="py-24 bg-white">
-      <div className="section-container">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight">
-            How It <span className="text-orange-500">Works</span>
+    <section className="py-24 bg-ink">
+      <div className="container-lg">
+        <div className="text-center mb-14">
+          <h2 className="text-4xl sm:text-5xl font-black text-cream-light tracking-tight">
+            How to <span className="text-gradient-gold">get started.</span>
           </h2>
         </div>
-        <div className="relative">
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-orange-100 hidden md:block" />
-          <div className="space-y-8">
-            {steps.map(({ n, title, desc }) => (
-              <div key={n} className="flex gap-8 items-start">
-                <div className="flex-shrink-0 w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center relative z-10">
-                  <span className="text-white font-black text-lg">{n}</span>
-                </div>
-                <div className="pt-3">
-                  <h3 className="text-xl font-black text-slate-900 mb-1">{title}</h3>
-                  <p className="text-slate-500">{desc}</p>
-                </div>
+        <div className="space-y-6">
+          {steps.map(({ n, title, desc }) => (
+            <div key={n} className="flex gap-7 items-start">
+              <div className="flex-shrink-0 w-14 h-14 bg-gold/10 border border-gold/30 rounded-2xl flex items-center justify-center">
+                <span className="text-gold font-black">{n}</span>
               </div>
-            ))}
-          </div>
+              <div className="pt-3">
+                <h3 className="text-cream-light font-black text-xl mb-1">{title}</h3>
+                <p className="text-cream-muted">{desc}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -255,30 +270,28 @@ function HowItWorks() {
 
 function B2BCTA() {
   return (
-    <section className="py-20 bg-orange-500">
-      <div className="section-container text-center">
-        <h2 className="text-4xl sm:text-5xl font-black text-white mb-4 tracking-tight">
-          Ready to Start?
+    <section className="py-20 bg-ink-surface border-t border-ink-border">
+      <div className="container-lg text-center">
+        <h2 className="text-4xl sm:text-5xl font-black text-cream-light mb-4 tracking-tight">
+          Ready to <span className="text-gradient-gold">partner with us?</span>
         </h2>
-        <p className="text-orange-100 text-xl mb-8 max-w-xl mx-auto">
-          Our B2B team responds within 2 hours on WhatsApp. Let's talk numbers.
+        <p className="text-cream-muted text-lg mb-8 max-w-lg mx-auto">
+          Our B2B team responds within 2 hours on WhatsApp. Let's discuss your store.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20partner%20with%20SPORTVIO%20for%20wholesale"
+            href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20become%20a%20SPORTVIO%20partner"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white text-orange-600 font-bold py-4 px-8 rounded-full hover:bg-orange-50 transition-colors shadow-lg text-lg"
+            className="btn-gold text-lg py-5 px-12 w-full sm:w-auto justify-center"
           >
             💬 WhatsApp Us Now
           </a>
-          <a href="mailto:b2b@sportvio.in" className="border-2 border-white text-white font-bold py-4 px-8 rounded-full hover:bg-white/10 transition-colors text-lg">
-            ✉️ Email Our B2B Team
+          <a href="tel:+919876543210" className="btn-outline py-5 px-8 w-full sm:w-auto justify-center">
+            📞 +91 98765 43210
           </a>
         </div>
-        <p className="mt-6 text-orange-200 text-sm">
-          Or call us directly: <span className="font-bold text-white">+91 98765 43210</span> (Mon–Sat, 10am–7pm IST)
-        </p>
+        <p className="mt-5 text-cream-muted text-sm">Mon–Sat, 10am–7pm IST · Email: b2b@sportvio.in</p>
       </div>
     </section>
   )
@@ -286,27 +299,28 @@ function B2BCTA() {
 
 function B2BFooter() {
   return (
-    <footer className="bg-slate-950 border-t border-white/10 py-10">
-      <div className="section-container text-center">
-        <Link href="/" className="text-slate-400 hover:text-white text-sm transition-colors">
-          ← Back to Main Site
+    <footer className="bg-ink border-t border-ink-border py-10">
+      <div className="container-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+        <Link href="/" className="text-cream-muted hover:text-gold text-sm transition-colors">
+          ← Back to Consumer Site
         </Link>
-        <p className="mt-4 text-slate-500 text-sm">© 2026 SPORTVIO. All rights reserved.</p>
+        <p className="text-cream-muted text-xs">© 2026 SPORTVIO. Wholesale partner programme.</p>
       </div>
     </footer>
   )
 }
 
+// ─── Page Export (gate wraps all content) ─────────────────────────────────────
 export default function B2BPage() {
   return (
-    <>
-      <HeroB2B />
-      <WhyPartner />
-      <PricingTable />
+    <B2BEmailGate>
+      <B2BHero />
+      <MathSection />
+      <Tiers />
       <WhoIsThisFor />
       <HowItWorks />
       <B2BCTA />
       <B2BFooter />
-    </>
+    </B2BEmailGate>
   )
 }

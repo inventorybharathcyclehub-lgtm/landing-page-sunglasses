@@ -3,85 +3,107 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --brand-orange: #f97316;
-    --brand-dark: #020617;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
-    @apply antialiased;
+    @apply bg-ink text-cream antialiased;
   }
+
+  ::selection {
+    background: rgba(196,154,60,0.3);
+    color: #FAF7F2;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #0C0B10; }
+  ::-webkit-scrollbar-thumb { background: #2A2830; border-radius: 2px; }
 }
 
 @layer components {
-  .section-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  /* Layout */
+  .container-xl {
+    @apply max-w-7xl mx-auto px-5 sm:px-8 lg:px-10;
+  }
+  .container-lg {
+    @apply max-w-5xl mx-auto px-5 sm:px-8;
   }
 
-  .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-full transition-all duration-200 shadow-lg hover:shadow-orange-500/30 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0;
+  /* Buttons */
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2
+           bg-gold hover:bg-gold-light
+           text-ink font-black
+           px-8 py-4 rounded-full
+           shadow-gold-sm hover:shadow-gold
+           transition-all duration-200
+           hover:-translate-y-0.5 active:translate-y-0;
   }
-
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 border-2 border-white/40 hover:border-orange-400 text-white hover:text-orange-400 font-bold py-4 px-8 rounded-full transition-all duration-200;
+    @apply inline-flex items-center justify-center gap-2
+           border border-cream/20 hover:border-gold/50
+           text-cream hover:text-gold
+           font-semibold px-8 py-4 rounded-full
+           transition-all duration-200;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2
+           text-cream/60 hover:text-gold
+           font-medium transition-colors duration-200;
   }
 
-  .section-badge {
-    @apply inline-flex items-center gap-2 bg-orange-500/20 border border-orange-500/40 text-orange-400 text-sm font-semibold px-4 py-2 rounded-full uppercase tracking-widest;
+  /* Cards */
+  .card {
+    @apply bg-ink-surface border border-ink-border rounded-2xl;
+  }
+  .card-elevated {
+    @apply bg-ink-raised border border-ink-border rounded-2xl;
+  }
+  .card-gold {
+    @apply bg-ink-surface border border-gold/20 rounded-2xl;
   }
 
-  .card-glass {
-    @apply bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm;
+  /* Labels */
+  .label {
+    @apply inline-flex items-center gap-1.5
+           text-xs font-bold uppercase tracking-[0.15em]
+           text-gold/80;
+  }
+  .label-pill {
+    @apply inline-flex items-center gap-1.5
+           text-xs font-bold uppercase tracking-[0.12em]
+           bg-gold/10 border border-gold/20
+           text-gold px-3 py-1.5 rounded-full;
   }
 
-  .price-original {
-    @apply text-slate-400 line-through text-lg;
+  /* Dividers */
+  .divider {
+    @apply border-t border-ink-border;
   }
 
-  .price-sale {
-    @apply text-slate-300 line-through text-2xl;
+  /* Gold text gradient */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #C49A3C 0%, #E8D5A0 50%, #C49A3C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-
-  .price-final {
-    @apply text-white text-5xl font-black;
-  }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
+/* Ticker */
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 35s linear infinite;
 }
-::-webkit-scrollbar-track {
-  background: #020617;
-}
-::-webkit-scrollbar-thumb {
-  background: #f97316;
-  border-radius: 3px;
+.ticker-track:hover {
+  animation-play-state: paused;
 }
 
-/* Gradient text utility */
-.gradient-text {
-  background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+/* Comparison table checkmarks */
+.check-yes  { color: #22784F; font-weight: 900; }
+.check-part { color: #8A6B28; font-weight: 700; }
+.check-no   { color: #6B6880; font-weight: 400; }
 
-/* Shimmer animation for badge */
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-.badge-shimmer {
-  background: linear-gradient(90deg, #f97316 25%, #fbbf24 50%, #f97316 75%);
-  background-size: 200% auto;
-  animation: shimmer 3s linear infinite;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+/* Sticky buy bar show/hide via JS */
+.sticky-bar-hidden { transform: translateY(100%); }
+.sticky-bar-visible { transform: translateY(0); }
