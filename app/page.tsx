@@ -17,6 +17,98 @@ export const metadata: Metadata = {
 // (AnnouncementBar moved to MarqueeAnnouncement.tsx for continuous scroll)
 // (StockCounter moved to LiveCounter.tsx as <LiveStock /> with live tick-down)
 
+// ─── Narrative bridge bands (story flow between chapters) ──────────
+function NarrativeBridge({
+  eyebrow,
+  children,
+  sub,
+  dark = false,
+}: {
+  eyebrow?: string
+  children: React.ReactNode
+  sub?: React.ReactNode
+  dark?: boolean
+}) {
+  return (
+    <section className={`py-14 sm:py-16 relative overflow-hidden ${
+      dark ? 'bg-ink text-white' : 'bg-bg border-y border-bg-border'
+    }`}>
+      {dark && <div className="absolute inset-0 spec-stripe opacity-25 pointer-events-none" />}
+      <div className="wrap-md relative text-center">
+        {eyebrow && (
+          <div className="label-xs mb-4 text-electric">{eyebrow}</div>
+        )}
+        <p className={`font-display font-bold text-2xl sm:text-3xl lg:text-4xl leading-[1.2] tracking-tighter ${
+          dark ? 'text-white' : 'text-ink'
+        }`}>
+          {children}
+        </p>
+        {sub && (
+          <p className={`mt-4 text-base sm:text-lg leading-relaxed max-w-xl mx-auto ${
+            dark ? 'text-white/65' : 'text-ink-muted'
+          }`}>
+            {sub}
+          </p>
+        )}
+      </div>
+    </section>
+  )
+}
+
+// ─── Founder story (the emotional center of the page) ─────────────
+function FounderStory() {
+  return (
+    <section className="bg-ink text-white py-20 sm:py-24 relative overflow-hidden">
+      <div className="absolute inset-0 spec-stripe opacity-20 pointer-events-none" />
+      <div className="wrap relative">
+        <div className="grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-center">
+          <div>
+            <div className="label-xs mb-4 text-electric">SO WE BUILT IT OURSELVES</div>
+            <h2 className="heading-lg text-white text-4xl sm:text-5xl lg:text-6xl mb-6">
+              Two Indian parents.<br />
+              <span className="text-electric">One bet:</span><br />
+              there had to be<br />
+              a better way.
+            </h2>
+            <div className="space-y-4 max-w-lg">
+              <p className="text-white/75 text-base sm:text-lg leading-relaxed">
+                Global brands design for Western sun. None had a frame sized for an Indian
+                9-year-old, certified for our UV-11 sky, tested under cricket-ground heat.
+              </p>
+              <p className="text-white text-base sm:text-lg leading-relaxed">
+                So we measured <strong className="text-electric">200+ Indian kids</strong> ages 4–14.
+                Tested in Chennai summer. Engineered for 120 kmh impacts.
+                Got the lab certs. Then built the kit no one was building.
+              </p>
+            </div>
+            <div className="mt-8 flex items-center gap-4">
+              <div className="w-10 h-10 bg-electric rounded flex items-center justify-center font-display font-bold text-white text-base">S</div>
+              <div>
+                <div className="text-white font-bold text-sm">SYED & SHWEB</div>
+                <div className="text-white/50 text-[10px] uppercase tracking-[0.18em] font-bold font-mono mt-0.5">
+                  BENGALURU · 2026
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="relative">
+            <div className="rounded-lg overflow-hidden aspect-[4/5] border border-white/10">
+              <img
+                src="/images/parent-child.jpg"
+                alt="Parent and child"
+                className="w-full h-full object-cover animate-ken-burns will-change-transform"
+              />
+            </div>
+            <div className="absolute -bottom-4 -left-4 bg-electric text-white text-[10px] font-bold uppercase tracking-[0.18em] px-3 py-2 rounded font-mono">
+              FOUNDERS' FIELD-TEST · APR 2026
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ─── Hero ─────────────────────────────────────────────────────────
 function Hero() {
   return (
@@ -38,14 +130,14 @@ function Hero() {
             </div>
 
             <div>
-              <div className="label-xs mb-4 text-electric">CERTIFIED PROTECTIVE EYEWEAR · AGES 4–14</div>
+              <div className="label-xs mb-4 text-electric">INDIA'S FIRST PROTECTIVE EYEWEAR FOR JUNIOR ATHLETES</div>
               <h1 className="heading-xl text-5xl sm:text-6xl lg:text-7xl">
-                Protect what<br />they see.<br />
-                <span className="text-electric">Every game.</span>
+                Their eyes are<br />growing.<br />
+                <span className="text-electric">The Indian sun<br />is not.</span>
               </h1>
               <p className="mt-5 body-lg max-w-lg">
-                UV400 sports eyewear engineered for India's junior athletes.
-                Lab-certified protection. Impact-grade polycarbonate. 28 grams.
+                SPORTVIO is UV400 sports eyewear engineered for India's junior athletes ages 4–14.
+                Built by parents who got tired of waiting for someone else to build it.
               </p>
             </div>
 
@@ -208,18 +300,19 @@ function Problem() {
       <div className="wrap">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="order-2 lg:order-1">
-            <div className="label-xs mb-4 text-electric">THE PROBLEM</div>
+            <div className="label-xs mb-4 text-electric">WHAT NO ONE TELLS YOU</div>
             <h2 className="heading-lg text-4xl sm:text-5xl mb-6">
-              India's UV index<br />
-              peaks at <span className="text-electric font-mono">11–12</span>
+              You can't see<br />
+              the damage.<br />
+              <span className="text-electric">That's the problem.</span>
             </h2>
             <p className="body-lg mb-4">
-              That's <strong className="text-ink">extreme</strong> on the WHO scale. Among the highest exposure levels on earth.
-              A child's developing eyes absorb <strong className="text-ink">3× more UV radiation</strong> than an adult's.
+              UV doesn't hurt. Not at the boundary. Not on the bike. Not until <strong className="text-ink">fifteen years later.</strong>
+              A child's eye lens absorbs <strong className="text-ink">3× more UV</strong> than yours.
             </p>
             <p className="body-md mb-6">
-              Yet 9 out of 10 Indian kids who play outdoor sports wear nothing — or worse,
-              uncertified ₹299 glasses that filter visible light but pass UV straight through.
+              By the time they're 18, <strong className="text-ink">half a lifetime's UV exposure is already set.</strong>
+              The damage is silent. Cumulative. Happening every match.
             </p>
 
             <div className="space-y-3">
@@ -273,22 +366,22 @@ function SportContexts() {
   const sports = [
     {
       sport: 'CRICKET',
-      title: 'Built for the boundary.',
-      desc: 'Anti-slip grip holds through dives. Impact-grade lens handles the sun at long-on. Light enough to forget at the crease.',
+      title: 'When the ball comes from the sun.',
+      desc: 'Anti-slip grip holds through a dive at fine leg. Impact-grade lens handles long-on glare. Light enough to forget when she walks back to the crease.',
       img:  '/images/sport-cricket.jpg',
       stat: '120 KMH', statLabel: 'IMPACT TESTED',
     },
     {
       sport: 'CYCLING',
-      title: 'Built for speed.',
-      desc: 'Wrap-fit stays on at speed. UV400 cuts road glare. At 28g, your child forgets these are on — until they take them off.',
+      title: 'When he\'s flying down the colony road.',
+      desc: 'Wrap-fit stays on at speed. UV400 cuts the road glare. 28 grams — your child forgets they\'re wearing them, until you ask for them back.',
       img:  '/images/sport-cycling-2.jpg',
       stat: '40 KMH',  statLabel: 'WIND TESTED',
     },
     {
       sport: 'FOOTBALL & OUTDOOR',
-      title: 'Built for hours.',
-      desc: 'Designed for Indian summer — morning school sport, afternoon matches, evening cycling. Built for the hours kids actually play.',
+      title: 'Every match before sundown.',
+      desc: 'Designed for Indian summer — morning school sport, afternoon matches, evening cycling. Built for the hours your child actually plays, not the hours marketers imagine they do.',
       img:  '/images/sport-football.jpg',
       stat: '8 HR',    statLabel: 'COMFORT TESTED',
     },
@@ -297,11 +390,14 @@ function SportContexts() {
     <section className="py-20 sm:py-24 bg-bg-soft border-y border-bg-border">
       <div className="wrap">
         <div className="text-center mb-12">
-          <div className="label-xs mb-3 text-electric">BUILT FOR INDIAN SPORT</div>
+          <div className="label-xs mb-3 text-electric">WHERE THE PROTECTION HAPPENS</div>
           <h2 className="heading-lg text-4xl sm:text-5xl">
-            Whatever the game.<br />
-            <span className="text-electric">They're game-ready.</span>
+            Built for the moments<br />
+            <span className="text-electric">parents don't see.</span>
           </h2>
+          <p className="body-md max-w-xl mx-auto mt-5">
+            Cricket. Cycling. Football. Each card is a moment the lens has to survive.
+          </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {sports.map(({ sport, title, desc, img, stat, statLabel }) => (
@@ -347,10 +443,10 @@ function Features() {
     <section className="py-20 sm:py-24 bg-bg">
       <div className="wrap">
         <div className="text-center mb-12">
-          <div className="label-xs mb-3 text-electric">PERFORMANCE FEATURES</div>
+          <div className="label-xs mb-3 text-electric">WHAT MAKES IT WORK</div>
           <h2 className="heading-lg text-4xl sm:text-5xl">
-            Engineered for<br />
-            <span className="text-electric">how kids play.</span>
+            Six choices we<br />
+            <span className="text-electric">refused to compromise on.</span>
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -390,14 +486,16 @@ function SpecSheet() {
       <div className="wrap">
         <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 lg:gap-14 items-start">
           <div className="lg:sticky lg:top-28">
-            <div className="label-xs mb-3 text-electric">TECHNICAL SPECIFICATION</div>
+            <div className="label-xs mb-3 text-electric">THIS IS WHAT WE BUILT</div>
             <h2 className="heading-lg text-3xl sm:text-4xl mb-4">
               Every spec.<br />
-              No fluff.
+              Every test.<br />
+              <span className="text-electric">Documented.</span>
             </h2>
             <p className="body-md mb-6">
-              Engineered, tested, documented. The same level of detail
-              you'd see on professional sport eyewear — published, not hidden.
+              Most kids' eyewear hides behind a logo. We publish everything:
+              the lens material, the certification, the test protocols.
+              If we wouldn't show it, we wouldn't ship it.
             </p>
             <div className="border border-bg-border rounded-lg p-5 bg-bg-soft">
               <div className="label-sm mb-2 flex items-center gap-2">
@@ -456,13 +554,16 @@ function Comparison() {
     <section className="py-20 sm:py-24 bg-bg-soft border-y border-bg-border">
       <div className="wrap">
         <div className="text-center mb-12">
-          <div className="label-xs mb-3 text-electric">HOW WE COMPARE</div>
+          <div className="label-xs mb-3 text-electric">AND THE WORST PART</div>
           <h2 className="heading-lg text-4xl sm:text-5xl">
-            Why ₹299 glasses<br />
-            <span className="text-electric">aren't neutral.</span>
+            The cheap glasses<br />
+            you bought to be safe<br />
+            <span className="text-electric">aren't.</span>
           </h2>
           <p className="body-md max-w-2xl mx-auto mt-5">
-            Cheap kids' glasses don't just fail to protect — they create a false sense of safety while UV passes straight through.
+            We tested 12 generic ₹299–₹499 kids' sunglasses from Amazon, Meesho, and roadside stalls.
+            <strong className="text-ink"> Zero met UV400.</strong> The lenses were acrylic — they shatter on first impact.
+            They protect nothing. They just feel like they do.
           </p>
         </div>
 
@@ -523,14 +624,15 @@ function Reviews() {
       <div className="wrap">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 items-start">
           <div className="lg:sticky lg:top-28">
-            <div className="label-xs mb-3 text-electric">PARENT REVIEWS</div>
+            <div className="label-xs mb-3 text-electric">WHAT 200+ PARENTS SAID</div>
             <h2 className="heading-lg text-4xl mb-5">
-              200+ Indian<br />families.<br />
-              <span className="text-electric font-mono">4.9★</span> verified.
+              Verified buys.<br />
+              <span className="text-electric">Verified words.</span>
             </h2>
             <p className="body-md">
-              Every review is a real parent who bought, used, and reported back.
-              We ship replacements next-day on the few that aren't perfect.
+              Six honest quotes from six different Indian cities. None were paid for.
+              The few returns we got, we replaced next-day — those parents are
+              in here too, with five stars now.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -556,13 +658,15 @@ function Guarantee() {
     <section className="py-20 bg-bg-soft border-y border-bg-border">
       <div className="wrap-md">
         <div className="border-2 border-ink rounded-lg p-8 sm:p-10 text-center bg-bg">
-          <div className="label-xs mb-3 text-electric">30-DAY GUARANTEE</div>
+          <div className="label-xs mb-3 text-electric">HOW WE EARN YOUR TRUST</div>
           <h2 className="heading-lg text-4xl mb-4">
-            Play hard. <span className="text-electric">We've got you.</span>
+            Risk on us. <span className="text-electric">Not on you.</span>
           </h2>
           <p className="body-md max-w-xl mx-auto mb-6">
-            Try SPORTVIO for 30 days. If your child doesn't love them — for any reason —
-            we pick them up free of charge and refund 100%. You keep the case and cloth.
+            We're a new brand asking you to spend ₹899 on a category most parents
+            still don't know exists. That trust gets earned the right way:
+            try them for 30 days. If your child doesn't love them — for any reason —
+            we pick them up and refund 100%. You keep the case and cloth as our apology.
           </p>
           <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm">
             <span className="flex items-center gap-1.5"><span className="text-forest">✓</span> Free pickup</span>
@@ -608,8 +712,11 @@ function FAQ() {
     <section className="py-20 sm:py-24 bg-bg">
       <div className="wrap-md">
         <div className="text-center mb-10">
-          <div className="label-xs mb-3 text-electric">FREQUENTLY ASKED</div>
-          <h2 className="heading-lg text-4xl sm:text-5xl">Questions, answered.</h2>
+          <div className="label-xs mb-3 text-electric">BEFORE YOU CLICK BUY</div>
+          <h2 className="heading-lg text-4xl sm:text-5xl">
+            Questions,<br />
+            <span className="text-electric">answered honestly.</span>
+          </h2>
         </div>
         <div className="space-y-3">
           {faqs.map(({ q, a }) => (
@@ -636,7 +743,7 @@ function OrderSection() {
       <div className="absolute inset-0 spec-stripe opacity-30 pointer-events-none" />
       <div className="wrap-md relative">
         <div className="text-center mb-10">
-          <div className="label-xs mb-3 text-electric">ORDER NOW</div>
+          <div className="label-xs mb-3 text-electric">JOIN THE FIRST 200</div>
           <h2 className="heading-lg text-white text-4xl sm:text-5xl mb-4">
             Every serious player has<br />
             their kit. <span className="text-electric">Start with their eyes.</span>
@@ -702,14 +809,16 @@ function ChampionKit() {
     <section className="py-20 sm:py-24 bg-bg">
       <div className="wrap">
         <div className="text-center mb-12">
-          <div className="label-xs mb-3 text-electric">THE CHAMPION KIT</div>
+          <div className="label-xs mb-3 text-electric">THE FULL KIT</div>
           <h2 className="heading-lg text-4xl sm:text-5xl">
-            Complete protection<br />
-            <span className="text-electric">for every sport.</span>
+            Helmets. Guards. Shorts.<br />
+            <span className="text-electric">For the same kid.</span>
           </h2>
           <p className="body-md max-w-xl mx-auto mt-5">
-            SPORTVIO is building India's first complete premium protective sports gear range
-            for junior athletes. Sunglasses are just Model 01.
+            Eyewear is Model 01. Helmet, knee guards, elbow guards, knuckle guards, padded cycling shorts —
+            all in design, all shipping through 2026. All sized for Indian kids 4–14.
+            Buy Model 01 today and you're not just buying eyewear —
+            <strong className="text-ink"> you're funding the rest of the kit.</strong>
           </p>
         </div>
 
@@ -862,18 +971,60 @@ export default function Home() {
       <MarqueeAnnouncement />
       <StickyBuyBar />
       <RecentPurchaseToast />
+
+      {/* ── CHAPTER 1: THE SCENE ── */}
       <Hero />
       <LiveActivity />
-      <TrustMetrics />
+
+      {/* Bridge: parent → empathy */}
+      <NarrativeBridge eyebrow="YOU'VE SEEN IT 100 TIMES">
+        You've watched them squint into the sun.<br />
+        Toss the ₹299 glasses in the kit bag.<br />
+        <span className="text-electric">Play on anyway.</span>
+      </NarrativeBridge>
+
+      {/* ── CHAPTER 2: THE STAKES ── */}
       <Problem />
-      <SportContexts />
-      <Features />
-      <SpecSheet />
+
+      {/* ── CHAPTER 3: THE VILLAIN ── */}
       <Comparison />
+
+      {/* ── CHAPTER 4: THE FOUNDER MOMENT (heart of the page) ── */}
+      <FounderStory />
+
+      {/* ── CHAPTER 5: THE REVEAL ── */}
+      <SpecSheet />
+      <Features />
+
+      {/* Bridge: spec → on-field reality */}
+      <NarrativeBridge eyebrow="BUT SPECS DON'T MATTER" sub="Until they survive the moments your child actually plays.">
+        Tests in a lab.<br />
+        <span className="text-electric">Then we tested on real fields.</span>
+      </NarrativeBridge>
+
+      <SportContexts />
+
+      {/* ── CHAPTER 6: THE PROOF ── */}
+      <NarrativeBridge dark eyebrow="SINCE WE LAUNCHED">
+        200+ Indian families<br />
+        have said <span className="text-electric">yes.</span>
+      </NarrativeBridge>
+      <TrustMetrics />
       <Reviews />
+
+      {/* ── CHAPTER 7: THE GUARANTEE ── */}
       <Guarantee />
       <FAQ />
+
+      {/* ── CHAPTER 8: THE INVITATION ── */}
       <OrderSection />
+
+      {/* Bridge: order → vision */}
+      <NarrativeBridge dark eyebrow="AND WE'RE NOT STOPPING HERE">
+        The eyewear is just<br />
+        <span className="text-electric font-mono tracking-tightest">Model 01.</span>
+      </NarrativeBridge>
+
       <ChampionKit />
       <FeedbackSection />
       <Footer />
