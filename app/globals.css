@@ -6,104 +6,101 @@
   html { scroll-behavior: smooth; }
 
   body {
-    @apply bg-ink text-cream antialiased;
+    @apply bg-warm-white text-ink antialiased;
   }
 
   ::selection {
-    background: rgba(196,154,60,0.3);
-    color: #FAF7F2;
+    background: rgba(154,123,44,0.15);
+    color: #1A1612;
   }
 
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: #0C0B10; }
-  ::-webkit-scrollbar-thumb { background: #2A2830; border-radius: 2px; }
+  ::-webkit-scrollbar       { width: 5px; }
+  ::-webkit-scrollbar-track { background: #F5F1EA; }
+  ::-webkit-scrollbar-thumb { background: #C8BEB4; border-radius: 3px; }
 }
 
 @layer components {
-  /* Layout */
-  .container-xl {
-    @apply max-w-7xl mx-auto px-5 sm:px-8 lg:px-10;
-  }
-  .container-lg {
-    @apply max-w-5xl mx-auto px-5 sm:px-8;
-  }
 
-  /* Buttons */
-  .btn-gold {
+  /* ── Layout ── */
+  .wrap     { @apply max-w-7xl mx-auto px-5 sm:px-8 lg:px-12; }
+  .wrap-md  { @apply max-w-4xl  mx-auto px-5 sm:px-8; }
+  .wrap-sm  { @apply max-w-2xl  mx-auto px-5 sm:px-8; }
+
+  /* ── Typography ── */
+  .heading-xl {
+    @apply font-serif font-bold leading-[1.06] tracking-tight text-ink;
+  }
+  .heading-lg {
+    @apply font-serif font-bold leading-[1.1] tracking-tight text-ink;
+  }
+  .body-lg    { @apply text-lg leading-relaxed text-ink-muted; }
+  .body-md    { @apply text-base leading-relaxed text-ink-muted; }
+  .label-xs   { @apply text-xs font-semibold uppercase tracking-[0.14em] text-ink-light; }
+
+  /* ── Buttons ── */
+  .btn-primary {
     @apply inline-flex items-center justify-center gap-2
-           bg-gold hover:bg-gold-light
-           text-ink font-black
-           px-8 py-4 rounded-full
-           shadow-gold-sm hover:shadow-gold
+           bg-ink hover:bg-ink-soft text-warm-white font-semibold
+           px-8 py-4 rounded-full shadow-card
            transition-all duration-200
            hover:-translate-y-0.5 active:translate-y-0;
   }
   .btn-outline {
     @apply inline-flex items-center justify-center gap-2
-           border border-cream/20 hover:border-gold/50
-           text-cream hover:text-gold
-           font-semibold px-8 py-4 rounded-full
+           border border-ink/30 hover:border-ink
+           text-ink font-semibold
+           px-8 py-4 rounded-full
            transition-all duration-200;
   }
-  .btn-ghost {
-    @apply inline-flex items-center gap-2
-           text-cream/60 hover:text-gold
-           font-medium transition-colors duration-200;
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2
+           bg-gold hover:bg-gold-light text-white font-semibold
+           px-8 py-4 rounded-full shadow-gold
+           transition-all duration-200
+           hover:-translate-y-0.5;
   }
 
-  /* Cards */
-  .card {
-    @apply bg-ink-surface border border-ink-border rounded-2xl;
-  }
-  .card-elevated {
-    @apply bg-ink-raised border border-ink-border rounded-2xl;
-  }
-  .card-gold {
-    @apply bg-ink-surface border border-gold/20 rounded-2xl;
-  }
-
-  /* Labels */
-  .label {
+  /* ── Pill labels ── */
+  .pill {
     @apply inline-flex items-center gap-1.5
-           text-xs font-bold uppercase tracking-[0.15em]
-           text-gold/80;
+           text-xs font-semibold uppercase tracking-[0.12em]
+           border border-warm-border text-ink-muted
+           px-3.5 py-1.5 rounded-full;
   }
-  .label-pill {
+  .pill-gold {
     @apply inline-flex items-center gap-1.5
-           text-xs font-bold uppercase tracking-[0.12em]
-           bg-gold/10 border border-gold/20
-           text-gold px-3 py-1.5 rounded-full;
+           text-xs font-semibold uppercase tracking-[0.12em]
+           bg-gold-pale border border-gold/30 text-gold-deep
+           px-3.5 py-1.5 rounded-full;
   }
 
-  /* Dividers */
-  .divider {
-    @apply border-t border-ink-border;
-  }
+  /* ── Cards ── */
+  .card      { @apply bg-white border border-warm-border rounded-2xl shadow-card; }
+  .card-soft { @apply bg-warm-cream border border-warm-border rounded-2xl; }
 
-  /* Gold text gradient */
-  .text-gradient-gold {
-    background: linear-gradient(135deg, #C49A3C 0%, #E8D5A0 50%, #C49A3C 100%);
+  /* ── Divider ── */
+  .hr { @apply border-t border-warm-border; }
+
+  /* ── Gold text gradient ── */
+  .text-gold-shine {
+    background: linear-gradient(135deg, #9A7B2C 0%, #D4AA52 50%, #9A7B2C 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 }
 
-/* Ticker */
+/* ── Ticker ── */
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: ticker 35s linear infinite;
+  animation: ticker 40s linear infinite;
 }
-.ticker-track:hover {
-  animation-play-state: paused;
-}
+.ticker-track:hover { animation-play-state: paused; }
 
-/* Comparison table checkmarks */
-.check-yes  { color: #22784F; font-weight: 900; }
-.check-part { color: #8A6B28; font-weight: 700; }
-.check-no   { color: #6B6880; font-weight: 400; }
+/* ── FAQ accordion arrow ── */
+details summary::-webkit-details-marker { display: none; }
 
-/* Sticky buy bar show/hide via JS */
-.sticky-bar-hidden { transform: translateY(100%); }
-.sticky-bar-visible { transform: translateY(0); }
+/* ── Sticky buy bar ── */
+.buy-bar-show { transform: translateY(0); }
+.buy-bar-hide { transform: translateY(100%); }

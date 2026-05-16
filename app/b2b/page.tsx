@@ -8,21 +8,18 @@ export const metadata: Metadata = {
   description: 'Exclusive wholesale pricing and marketing support for SPORTVIO partners. Apply for access.',
 }
 
-// ─── B2B Content (shown only after email gate) ────────────────────────────────
-
 function B2BHero() {
   return (
-    <section className="relative bg-ink pt-28 pb-20 overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,_rgba(196,154,60,0.05)_0%,_transparent_70%)] pointer-events-none" />
-      <Navbar announcementOffset={false} />
-      <div className="container-xl">
+    <section className="relative bg-warm-white pt-9 pb-20 overflow-hidden">
+      <Navbar />
+      <div className="wrap pt-24">
         <div className="max-w-3xl">
-          <span className="label-pill mb-6 inline-flex">Wholesale Partner Programme</span>
-          <h1 className="text-5xl sm:text-6xl font-black text-cream-light tracking-tight leading-tight mb-6">
+          <span className="pill mb-6 inline-flex">Wholesale Partner Programme</span>
+          <h1 className="heading-xl text-5xl sm:text-6xl mb-6">
             Your store's most profitable<br />
-            <span className="text-gradient-gold">square foot.</span>
+            <span className="text-gold-shine">square foot.</span>
           </h1>
-          <p className="text-xl text-cream-muted leading-relaxed mb-8 max-w-2xl">
+          <p className="body-lg mb-8 max-w-2xl">
             We supply premium kids' UV400 sunglasses at wholesale — then we help you
             sell every single pair. Marketing support, display fixtures, and sell-through
             guarantees included. No other brand does this.
@@ -32,7 +29,7 @@ function B2BHero() {
               href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20become%20a%20SPORTVIO%20wholesale%20partner"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-gold"
+              className="btn-primary"
             >
               💬 WhatsApp for Custom Quote
             </a>
@@ -48,8 +45,8 @@ function B2BHero() {
 
 function MathSection() {
   return (
-    <section className="py-16 bg-ink-surface border-y border-ink-border">
-      <div className="container-lg">
+    <section className="py-16 bg-warm-cream border-y border-warm-border">
+      <div className="wrap-md">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           {[
             { label: 'You buy at', value: '₹250', sub: 'per unit wholesale' },
@@ -57,16 +54,16 @@ function MathSection() {
             { label: 'You earn', value: '₹549–₹950', sub: 'profit per unit' },
           ].map(({ label, value, sub }) => (
             <div key={label} className="space-y-1">
-              <div className="text-cream-muted text-sm uppercase tracking-widest">{label}</div>
-              <div className="text-4xl sm:text-5xl font-black text-gradient-gold">{value}</div>
-              <div className="text-cream-muted text-sm">{sub}</div>
+              <div className="text-ink-light text-sm uppercase tracking-widest">{label}</div>
+              <div className="font-serif font-bold text-4xl sm:text-5xl text-gold-shine">{value}</div>
+              <div className="text-ink-muted text-sm">{sub}</div>
             </div>
           ))}
         </div>
-        <div className="mt-10 card-gold p-6 text-center">
-          <p className="text-cream-light">
+        <div className="mt-10 bg-gold-pale border border-gold/20 rounded-2xl p-6 text-center">
+          <p className="text-ink">
             One display rack (under 1 sq. ft.) holding 24 pairs at ₹799 each = up to{' '}
-            <span className="text-gold font-black">₹12,000+ profit</span> per sell-through.
+            <span className="text-gold font-bold">₹12,000+ profit</span> per sell-through.
             Highest revenue per square foot of any kids' category.
           </p>
         </div>
@@ -131,14 +128,14 @@ function Tiers() {
   ]
 
   return (
-    <section className="py-24 bg-ink">
-      <div className="container-xl">
+    <section className="py-24 bg-warm-white">
+      <div className="wrap">
         <div className="text-center mb-14">
-          <span className="label-pill mb-4 inline-flex">Wholesale Pricing</span>
-          <h2 className="text-4xl sm:text-5xl font-black text-cream-light tracking-tight">
-            Choose your <span className="text-gradient-gold">partner tier.</span>
+          <span className="pill mb-4 inline-flex">Wholesale Pricing</span>
+          <h2 className="heading-lg text-4xl sm:text-5xl">
+            Choose your <span className="text-gold-shine">partner tier.</span>
           </h2>
-          <p className="mt-4 text-cream-muted max-w-xl mx-auto">
+          <p className="mt-4 text-ink-muted max-w-xl mx-auto">
             All prices exclusive of GST. GST invoice provided on every order. 50% advance, 50% on dispatch.
           </p>
         </div>
@@ -149,32 +146,32 @@ function Tiers() {
               key={t.name}
               className={`rounded-2xl p-8 transition-all duration-300 ${
                 t.highlight
-                  ? 'bg-gold/8 border-2 border-gold/50 shadow-gold'
-                  : 'card hover:border-gold/20'
+                  ? 'bg-gold-pale border-2 border-gold/40 shadow-gold'
+                  : 'card hover:border-gold/30'
               }`}
             >
               {t.highlight && (
-                <div className="bg-gold text-ink text-xs font-black px-3 py-1 rounded-full inline-block mb-4">
+                <div className="bg-gold text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">
                   Most Popular
                 </div>
               )}
               <div className="mb-6">
-                <div className="text-cream-muted text-xs uppercase tracking-widest mb-1">{t.name}</div>
-                <div className="text-cream-light font-black text-2xl">{t.units}</div>
+                <div className="text-ink-light text-xs uppercase tracking-widest mb-1">{t.name}</div>
+                <div className="text-ink font-bold text-2xl">{t.units}</div>
                 <div className="flex items-baseline gap-2 mt-2">
-                  <span className={`text-4xl font-black ${t.highlight ? 'text-gradient-gold' : 'text-gold'}`}>{t.price}</span>
-                  <span className="text-cream-muted text-sm">/ unit</span>
+                  <span className="font-serif font-bold text-4xl text-gold">{t.price}</span>
+                  <span className="text-ink-muted text-sm">/ unit</span>
                 </div>
-                <div className="text-cream-muted text-sm mt-1">Total: {t.total}</div>
+                <div className="text-ink-muted text-sm mt-1">Total: {t.total}</div>
               </div>
 
-              <div className={`text-sm font-bold mb-5 ${t.highlight ? 'text-gold' : 'text-forest-light'}`}>
+              <div className={`text-sm font-bold mb-5 ${t.highlight ? 'text-gold-deep' : 'text-forest'}`}>
                 🎁 {t.support}
               </div>
 
               <ul className="space-y-2.5 mb-8">
                 {t.features.map(f => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-cream-muted">
+                  <li key={f} className="flex items-start gap-2 text-sm text-ink-muted">
                     <span className="text-gold flex-shrink-0 mt-0.5">✓</span>
                     {f}
                   </li>
@@ -187,8 +184,8 @@ function Tiers() {
                 rel="noopener noreferrer"
                 className={`block w-full text-center font-bold py-3.5 rounded-xl transition-all ${
                   t.highlight
-                    ? 'bg-gold hover:bg-gold-light text-ink shadow-gold-sm'
-                    : 'bg-ink-raised border border-ink-border hover:border-gold/30 text-cream-light'
+                    ? 'bg-gold hover:bg-gold-light text-white shadow-gold'
+                    : 'bg-warm-cream border border-warm-border hover:border-gold/30 text-ink hover:text-gold'
                 }`}
               >
                 {t.cta}
@@ -212,19 +209,19 @@ function WhoIsThisFor() {
   ]
 
   return (
-    <section className="py-24 bg-ink-surface border-y border-ink-border">
-      <div className="container-xl">
+    <section className="py-24 bg-warm-cream border-y border-warm-border">
+      <div className="wrap">
         <div className="text-center mb-14">
-          <h2 className="text-4xl sm:text-5xl font-black text-cream-light tracking-tight">
-            Who this programme is <span className="text-gradient-gold">built for.</span>
+          <h2 className="heading-lg text-4xl sm:text-5xl">
+            Who this programme is <span className="text-gold-shine">built for.</span>
           </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {segments.map(({ icon, title, desc }) => (
-            <div key={title} className="card p-7 hover:border-gold/20 transition-all">
+            <div key={title} className="card p-7 hover:border-gold/30 transition-all">
               <div className="text-3xl mb-4">{icon}</div>
-              <h3 className="text-cream-light font-black text-lg mb-2">{title}</h3>
-              <p className="text-cream-muted text-sm leading-relaxed">{desc}</p>
+              <h3 className="text-ink font-bold font-serif text-lg mb-2">{title}</h3>
+              <p className="text-ink-muted text-sm leading-relaxed">{desc}</p>
             </div>
           ))}
         </div>
@@ -235,7 +232,7 @@ function WhoIsThisFor() {
 
 function HowItWorks() {
   const steps = [
-    { n: '01', title: 'WhatsApp or Call Us', desc: 'Tell us about your store and which tier you\'re interested in. We respond within 2 hours.' },
+    { n: '01', title: 'WhatsApp or Call Us', desc: "Tell us about your store and which tier you're interested in. We respond within 2 hours." },
     { n: '02', title: 'Get a Free Sample Kit', desc: 'We send 2–3 pairs so you can feel the quality. Sample cost is refunded on your first order.' },
     { n: '03', title: 'Place Your Order', desc: '50% advance, 50% on dispatch. We ship within 5 working days with full tracking.' },
     { n: '04', title: 'We Set You Up', desc: 'Display materials, product images, price cards, and social content — all delivered.' },
@@ -243,22 +240,22 @@ function HowItWorks() {
   ]
 
   return (
-    <section className="py-24 bg-ink">
-      <div className="container-lg">
+    <section className="py-24 bg-warm-white">
+      <div className="wrap-md">
         <div className="text-center mb-14">
-          <h2 className="text-4xl sm:text-5xl font-black text-cream-light tracking-tight">
-            How to <span className="text-gradient-gold">get started.</span>
+          <h2 className="heading-lg text-4xl sm:text-5xl">
+            How to <span className="text-gold-shine">get started.</span>
           </h2>
         </div>
         <div className="space-y-6">
           {steps.map(({ n, title, desc }) => (
             <div key={n} className="flex gap-7 items-start">
-              <div className="flex-shrink-0 w-14 h-14 bg-gold/10 border border-gold/30 rounded-2xl flex items-center justify-center">
-                <span className="text-gold font-black">{n}</span>
+              <div className="flex-shrink-0 w-14 h-14 bg-gold-pale border border-gold/20 rounded-2xl flex items-center justify-center">
+                <span className="text-gold font-bold font-serif">{n}</span>
               </div>
               <div className="pt-3">
-                <h3 className="text-cream-light font-black text-xl mb-1">{title}</h3>
-                <p className="text-cream-muted">{desc}</p>
+                <h3 className="text-ink font-bold font-serif text-xl mb-1">{title}</h3>
+                <p className="text-ink-muted">{desc}</p>
               </div>
             </div>
           ))}
@@ -270,12 +267,12 @@ function HowItWorks() {
 
 function B2BCTA() {
   return (
-    <section className="py-20 bg-ink-surface border-t border-ink-border">
-      <div className="container-lg text-center">
-        <h2 className="text-4xl sm:text-5xl font-black text-cream-light mb-4 tracking-tight">
-          Ready to <span className="text-gradient-gold">partner with us?</span>
+    <section className="py-20 bg-ink">
+      <div className="wrap-md text-center">
+        <h2 className="font-serif font-bold text-4xl sm:text-5xl text-warm-white mb-4 tracking-tight">
+          Ready to <span className="text-gold-shine">partner with us?</span>
         </h2>
-        <p className="text-cream-muted text-lg mb-8 max-w-lg mx-auto">
+        <p className="text-warm-white/60 text-lg mb-8 max-w-lg mx-auto">
           Our B2B team responds within 2 hours on WhatsApp. Let's discuss your store.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -287,11 +284,14 @@ function B2BCTA() {
           >
             💬 WhatsApp Us Now
           </a>
-          <a href="tel:+919876543210" className="btn-outline py-5 px-8 w-full sm:w-auto justify-center">
+          <a
+            href="tel:+919876543210"
+            className="inline-flex items-center justify-center gap-2 border border-warm-white/25 hover:border-warm-white text-warm-white font-semibold py-5 px-8 rounded-full transition-all duration-200 w-full sm:w-auto"
+          >
             📞 +91 98765 43210
           </a>
         </div>
-        <p className="mt-5 text-cream-muted text-sm">Mon–Sat, 10am–7pm IST · Email: b2b@sportvio.in</p>
+        <p className="mt-5 text-warm-white/40 text-sm">Mon–Sat, 10am–7pm IST · Email: b2b@sportvio.in</p>
       </div>
     </section>
   )
@@ -299,18 +299,17 @@ function B2BCTA() {
 
 function B2BFooter() {
   return (
-    <footer className="bg-ink border-t border-ink-border py-10">
-      <div className="container-xl flex flex-col sm:flex-row items-center justify-between gap-4">
-        <Link href="/" className="text-cream-muted hover:text-gold text-sm transition-colors">
+    <footer className="bg-warm-cream border-t border-warm-border py-10">
+      <div className="wrap flex flex-col sm:flex-row items-center justify-between gap-4">
+        <Link href="/" className="text-ink-muted hover:text-gold text-sm transition-colors">
           ← Back to Consumer Site
         </Link>
-        <p className="text-cream-muted text-xs">© 2026 SPORTVIO. Wholesale partner programme.</p>
+        <p className="text-ink-light text-xs">© 2026 SPORTVIO. Wholesale partner programme.</p>
       </div>
     </footer>
   )
 }
 
-// ─── Page Export (gate wraps all content) ─────────────────────────────────────
 export default function B2BPage() {
   return (
     <B2BEmailGate>
