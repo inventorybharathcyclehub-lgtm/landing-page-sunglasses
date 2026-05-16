@@ -4,6 +4,9 @@ import Navbar from '@/components/Navbar'
 import CountdownTimer from '@/components/CountdownTimer'
 import FeedbackForm from '@/components/FeedbackForm'
 import StickyBuyBar from '@/components/StickyBuyBar'
+import MarqueeAnnouncement from '@/components/MarqueeAnnouncement'
+import RecentPurchaseToast from '@/components/RecentPurchaseToast'
+import { LiveViewers, LiveStock, CountUp } from '@/components/LiveCounter'
 
 export const metadata: Metadata = {
   title: 'SPORTVIO — UV400 Sports Eyewear for Junior Athletes | ₹899 | Free Delivery',
@@ -11,48 +14,8 @@ export const metadata: Metadata = {
   keywords: ['kids sports sunglasses India', 'UV400 kids glasses', 'junior athlete sunglasses', 'cricket sunglasses kids', 'cycling sunglasses children India'],
 }
 
-// ─── Announcement bar ───────────────────────────────────────────────
-function AnnouncementBar() {
-  return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-ink text-white">
-      <div className="flex items-center justify-center gap-8 py-2 px-4 text-[10px] overflow-hidden">
-        {[
-          'FREE DELIVERY PAN-INDIA',
-          'CASH ON DELIVERY',
-          '30-DAY RETURNS',
-          'UV400 LAB CERTIFIED',
-        ].map(item => (
-          <span key={item} className="hidden sm:inline tracking-[0.18em] font-semibold opacity-80">{item}</span>
-        ))}
-        <span className="sm:hidden tracking-[0.14em] font-semibold opacity-80">
-          FREE DELIVERY · COD · UV400 CERTIFIED
-        </span>
-      </div>
-    </div>
-  )
-}
-
-// ─── Stock counter ────────────────────────────────────────────────
-function StockCounter({ inverted = false }: { inverted?: boolean }) {
-  const sold = 113
-  const total = 200
-  const left = total - sold
-  const pct = (sold / total) * 100
-  return (
-    <div className={`border-l-2 border-electric pl-4 ${inverted ? 'text-white' : ''}`}>
-      <div className="flex items-baseline justify-between mb-1.5">
-        <span className={`text-[11px] font-bold uppercase tracking-[0.16em] ${inverted ? 'text-white/80' : 'text-ink'}`}>UNITS LEFT AT LAUNCH PRICE</span>
-        <span className={`font-mono font-bold text-sm ${inverted ? 'text-white' : 'text-ink'}`}>{left} / {total}</span>
-      </div>
-      <div className={`h-1.5 rounded-full overflow-hidden ${inverted ? 'bg-white/15' : 'bg-bg-border'}`}>
-        <div className="h-full bg-electric" style={{ width: `${pct}%` }} />
-      </div>
-      <div className={`text-xs mt-2 ${inverted ? 'text-white/60' : 'text-ink-muted'}`}>
-        <span className="text-ember font-bold">●</span> SELLING FAST — 23 SOLD IN LAST 24 HOURS
-      </div>
-    </div>
-  )
-}
+// (AnnouncementBar moved to MarqueeAnnouncement.tsx for continuous scroll)
+// (StockCounter moved to LiveCounter.tsx as <LiveStock /> with live tick-down)
 
 // ─── Hero ─────────────────────────────────────────────────────────
 function Hero() {
@@ -67,7 +30,7 @@ function Hero() {
             <div className="flex flex-wrap items-center gap-2">
               <span className="pill-live">
                 <span className="live-dot" />
-                47 VIEWING NOW
+                <LiveViewers /> VIEWING NOW
               </span>
               <span className="pill">
                 <span className="text-electric">★</span> 4.9 · 200+ FAMILIES
@@ -109,8 +72,10 @@ function Hero() {
               </div>
             </div>
 
-            {/* Stock counter */}
-            <StockCounter />
+            {/* Stock counter — ticks down over time */}
+            <div className="border-l-2 border-electric pl-4">
+              <LiveStock start={87} total={200} />
+            </div>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-3">
@@ -134,39 +99,42 @@ function Hero() {
             </div>
           </div>
 
-          {/* Right: Product visual */}
+          {/* Right: Lifestyle hero visual */}
           <div className="relative flex items-center justify-center lg:justify-end">
             <div className="relative w-full max-w-lg">
-              <div className="relative rounded-lg overflow-hidden aspect-square bg-bg-soft border border-bg-border">
+              <div className="relative rounded-lg overflow-hidden aspect-[4/5] bg-bg-soft border border-bg-border">
+                {/* Ken-burns lifestyle image — perpetual subtle zoom */}
                 <img
-                  src="https://www.eyewearlabs.com/cdn/shop/files/RYKER_GHOSTLY_GREEN_Carousel_ad.png?crop=center&height=900&v=1767342109&width=900"
-                  alt="UV400 sports sunglasses for junior athletes"
-                  className="w-full h-full object-cover"
+                  src="/images/hero-kid.jpg"
+                  alt="Indian kid in sports sunglasses"
+                  className="w-full h-full object-cover animate-ken-burns will-change-transform"
                 />
 
                 {/* Tech overlay badges */}
                 <div className="absolute top-4 left-4 bg-ink/95 backdrop-blur text-white text-[10px] font-bold uppercase tracking-[0.14em] px-2.5 py-1.5 rounded font-mono">
                   MODEL 01 / RYKER
                 </div>
-                <div className="absolute top-4 right-4 bg-electric text-white text-[10px] font-bold uppercase tracking-[0.14em] px-2.5 py-1.5 rounded">
+                <div className="absolute top-4 right-4 bg-electric text-white text-[10px] font-bold uppercase tracking-[0.14em] px-2.5 py-1.5 rounded animate-subtle-pulse">
                   UV400 ✓
                 </div>
 
-                {/* Colorway picker */}
+                {/* Bottom dark gradient + colorway picker */}
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 via-ink/30 to-transparent h-32 pointer-events-none" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2 bg-white/95 backdrop-blur border border-bg-border rounded p-2">
                   <span className="text-[10px] uppercase tracking-[0.16em] text-ink-muted font-bold mr-1">COLORS</span>
-                  <img src="https://www.eyewearlabs.com/cdn/shop/files/8_a9c80efa-b559-4f9b-b62b-2d7b38a83b5b.png?crop=center&height=80&v=1767342109&width=80" className="w-9 h-9 object-contain rounded bg-bg-soft border-2 border-electric p-0.5" alt="Green" />
-                  <img src="https://www.eyewearlabs.com/cdn/shop/files/1_49c55e0d-b5b5-4533-be89-452ec4fecb8b.png?crop=center&height=80&v=1759923659&width=80" className="w-9 h-9 object-contain rounded bg-bg-soft border border-bg-border p-0.5" alt="Red" />
-                  <img src="https://www.eyewearlabs.com/cdn/shop/files/Ryker_Night_Vision_Amazon.png?crop=center&height=80&v=1767342334&width=80" className="w-9 h-9 object-contain rounded bg-bg-soft border border-bg-border p-0.5" alt="Night Vision" />
+                  <img src="/images/product-blue-lens.jpg"  className="w-9 h-9 object-cover rounded border-2 border-electric"          alt="Electric" />
+                  <img src="/images/product-macro.jpg"      className="w-9 h-9 object-cover rounded border border-bg-border"          alt="Macro" />
+                  <img src="/images/product-collection.jpg" className="w-9 h-9 object-cover rounded border border-bg-border"          alt="Collection" />
+                  <img src="/images/product-case.jpg"       className="w-9 h-9 object-cover rounded border border-bg-border"          alt="Case" />
                 </div>
               </div>
 
               {/* Spec callouts */}
-              <div className="absolute -left-5 top-1/4 card px-3 py-2 shadow-card-lg hidden lg:block">
+              <div className="absolute -left-5 top-1/4 card px-3 py-2 shadow-card-lg hidden lg:block animate-fade-up">
                 <div className="font-display font-bold text-electric text-2xl tracking-tightest font-mono">28g</div>
                 <div className="text-ink-muted text-[10px] uppercase tracking-[0.16em] font-bold">ULTRALIGHT</div>
               </div>
-              <div className="absolute -right-5 top-2/3 card px-3 py-2 shadow-card-lg hidden lg:block">
+              <div className="absolute -right-5 top-2/3 card px-3 py-2 shadow-card-lg hidden lg:block animate-fade-up">
                 <div className="font-display font-bold text-electric text-xl tracking-tightest font-mono">UV400</div>
                 <div className="text-ink-muted text-[10px] uppercase tracking-[0.16em] font-bold">LAB-CERTIFIED</div>
               </div>
@@ -210,12 +178,12 @@ function LiveActivity() {
 
 // ─── Trust metrics bar ────────────────────────────────────────────
 function TrustMetrics() {
-  const items = [
-    { value: '2,847', label: 'PAIRS SOLD' },
-    { value: '4.9★',  label: '200+ REVIEWS' },
-    { value: 'UV400', label: 'LAB CERTIFIED' },
-    { value: '24H',   label: 'SHIPS WITHIN' },
-    { value: '₹0',    label: 'DELIVERY COST' },
+  const items: { value: React.ReactNode; label: string }[] = [
+    { value: <CountUp to={2847} />,           label: 'PAIRS SOLD' },
+    { value: <><CountUp to={4} />.<CountUp to={9} />★</>, label: '200+ REVIEWS' },
+    { value: 'UV400',                          label: 'LAB CERTIFIED' },
+    { value: <><CountUp to={24} />H</>,        label: 'SHIPS WITHIN' },
+    { value: '₹0',                             label: 'DELIVERY COST' },
   ]
   return (
     <section className="bg-bg-soft border-y border-bg-border py-6">
@@ -239,7 +207,7 @@ function Problem() {
     <section className="py-20 sm:py-24 bg-bg">
       <div className="wrap">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
+          <div className="order-2 lg:order-1">
             <div className="label-xs mb-4 text-electric">THE PROBLEM</div>
             <h2 className="heading-lg text-4xl sm:text-5xl mb-6">
               India's UV index<br />
@@ -249,30 +217,49 @@ function Problem() {
               That's <strong className="text-ink">extreme</strong> on the WHO scale. Among the highest exposure levels on earth.
               A child's developing eyes absorb <strong className="text-ink">3× more UV radiation</strong> than an adult's.
             </p>
-            <p className="body-md">
+            <p className="body-md mb-6">
               Yet 9 out of 10 Indian kids who play outdoor sports wear nothing — or worse,
               uncertified ₹299 glasses that filter visible light but pass UV straight through.
             </p>
+
+            <div className="space-y-3">
+              <div className="border-l-4 border-electric bg-bg-soft p-4 rounded-r flex items-center gap-4">
+                <div className="font-display font-bold text-3xl text-ink font-mono tracking-tightest min-w-[60px]">
+                  <CountUp to={2} suffix="HR" />
+                </div>
+                <div className="text-sm text-ink-muted">
+                  Average daily UV exposure for Indian kids in one outdoor sport
+                </div>
+              </div>
+              <div className="border-l-4 border-ember bg-bg-soft p-4 rounded-r flex items-center gap-4">
+                <div className="font-display font-bold text-3xl text-ink font-mono tracking-tightest min-w-[60px]">
+                  <CountUp to={3} suffix="×" />
+                </div>
+                <div className="text-sm text-ink-muted">
+                  More UV absorbed by a child's eye lens vs an adult's
+                </div>
+              </div>
+              <div className="border-l-4 border-signal-yellow bg-bg-soft p-4 rounded-r flex items-center gap-4">
+                <div className="font-display font-bold text-3xl text-ink font-mono tracking-tightest min-w-[60px]">
+                  <CountUp to={0} suffix="%" />
+                </div>
+                <div className="text-sm text-ink-muted">
+                  Of ₹299 generic kids' glasses we tested met the UV400 standard
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="space-y-3">
-            <div className="border-l-4 border-electric bg-bg-soft p-5 rounded-r">
-              <div className="font-display font-bold text-3xl text-ink font-mono tracking-tightest mb-1">2HR</div>
-              <div className="text-sm text-ink-muted">
-                Average daily UV exposure for Indian kids who play one outdoor sport
-              </div>
+          <div className="order-1 lg:order-2 relative">
+            <div className="rounded-lg overflow-hidden aspect-[4/5] border border-bg-border">
+              <img
+                src="/images/problem-protected.jpg"
+                alt="Protected kid in bright sun with sunglasses"
+                className="w-full h-full object-cover animate-ken-burns will-change-transform"
+              />
             </div>
-            <div className="border-l-4 border-ember bg-bg-soft p-5 rounded-r">
-              <div className="font-display font-bold text-3xl text-ink font-mono tracking-tightest mb-1">3×</div>
-              <div className="text-sm text-ink-muted">
-                More UV absorbed by a child's eye lens compared to an adult's
-              </div>
-            </div>
-            <div className="border-l-4 border-signal-yellow bg-bg-soft p-5 rounded-r">
-              <div className="font-display font-bold text-3xl text-ink font-mono tracking-tightest mb-1">0%</div>
-              <div className="text-sm text-ink-muted">
-                Of ₹299 generic kids' glasses we tested met the UV400 standard
-              </div>
+            <div className="absolute top-4 left-4 bg-signal-yellow text-ink text-[10px] font-bold uppercase tracking-[0.14em] px-3 py-1.5 rounded">
+              UV INDEX 11 · EXTREME
             </div>
           </div>
         </div>
@@ -288,21 +275,21 @@ function SportContexts() {
       sport: 'CRICKET',
       title: 'Built for the boundary.',
       desc: 'Anti-slip grip holds through dives. Impact-grade lens handles the sun at long-on. Light enough to forget at the crease.',
-      img:  'https://www.eyewearlabs.com/cdn/shop/files/1_49c55e0d-b5b5-4533-be89-452ec4fecb8b.png?crop=center&height=400&v=1759923659&width=400',
+      img:  '/images/sport-cricket.jpg',
       stat: '120 KMH', statLabel: 'IMPACT TESTED',
     },
     {
       sport: 'CYCLING',
       title: 'Built for speed.',
       desc: 'Wrap-fit stays on at speed. UV400 cuts road glare. At 28g, your child forgets these are on — until they take them off.',
-      img:  'https://www.eyewearlabs.com/cdn/shop/files/RYKER_GHOSTLY_GREEN_Carousel_ad.png?crop=center&height=400&v=1767342109&width=400',
+      img:  '/images/sport-cycling-2.jpg',
       stat: '40 KMH',  statLabel: 'WIND TESTED',
     },
     {
       sport: 'FOOTBALL & OUTDOOR',
       title: 'Built for hours.',
       desc: 'Designed for Indian summer — morning school sport, afternoon matches, evening cycling. Built for the hours kids actually play.',
-      img:  'https://www.eyewearlabs.com/cdn/shop/files/Ryker_Night_Vision_Amazon.png?crop=center&height=400&v=1767342334&width=400',
+      img:  '/images/sport-football.jpg',
       stat: '8 HR',    statLabel: 'COMFORT TESTED',
     },
   ]
@@ -318,12 +305,19 @@ function SportContexts() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {sports.map(({ sport, title, desc, img, stat, statLabel }) => (
-            <div key={sport} className="card overflow-hidden">
-              <div className="h-44 bg-bg-soft flex items-center justify-center p-4 border-b border-bg-border">
-                <img src={img} alt={sport} className="h-full w-full object-contain" />
+            <div key={sport} className="card overflow-hidden group hover:shadow-card-lg transition-shadow duration-300">
+              <div className="h-64 overflow-hidden relative">
+                <img
+                  src={img}
+                  alt={sport}
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
+                <div className="absolute top-3 left-3 bg-electric text-white text-[10px] font-bold uppercase tracking-[0.16em] px-2.5 py-1 rounded">
+                  {sport}
+                </div>
               </div>
               <div className="p-6">
-                <div className="label-sm text-electric mb-2">{sport}</div>
                 <h3 className="font-display font-bold text-ink text-xl mb-3 leading-tight">{title}</h3>
                 <p className="text-ink-muted text-sm leading-relaxed mb-4">{desc}</p>
                 <div className="flex items-baseline gap-2 pt-3 border-t border-bg-border">
@@ -660,7 +654,7 @@ function OrderSection() {
           </div>
 
           <div className="border border-bg-border rounded p-4 mb-6 bg-bg-soft">
-            <StockCounter />
+            <LiveStock start={87} total={200} />
           </div>
 
           <div className="space-y-3">
@@ -696,7 +690,7 @@ function ChampionKit() {
       tag: 'MODEL 01', name: 'UV400 Sports Sunglasses',
       desc: 'Impact-grade polycarbonate. Anti-slip grip. Premium case included. Built for cricket, cycling, and every Indian sport.',
       status: 'AVAILABLE NOW', available: true, price: '₹899',
-      img: 'https://www.eyewearlabs.com/cdn/shop/files/8_a9c80efa-b559-4f9b-b62b-2d7b38a83b5b.png?crop=center&height=400&v=1767342109&width=400',
+      img: '/images/product-blue-lens.jpg',
     },
     { tag: 'MODEL 02', name: 'Premium Sports Helmet', desc: 'ABS outer + EPS foam. Dual-density impact liner. Dial-fit system. Sized for kids 4–14.', status: 'AUG 2026', available: false },
     { tag: 'MODEL 03', name: 'Pro Knee Guards',       desc: 'Hard-shell EVA foam, breathable mesh lining. Stays in place during cycling, skating, cricket fielding.', status: 'AUG 2026', available: false },
@@ -728,8 +722,8 @@ function ChampionKit() {
               }`}
             >
               {available && img && (
-                <div className="h-48 bg-bg-soft flex items-center justify-center p-5">
-                  <img src={img} alt={name} className="h-full w-full object-contain" />
+                <div className="h-52 overflow-hidden relative group/img">
+                  <img src={img} alt={name} className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105" />
                 </div>
               )}
               <div className="p-6">
@@ -865,8 +859,9 @@ function Footer() {
 export default function Home() {
   return (
     <>
-      <AnnouncementBar />
+      <MarqueeAnnouncement />
       <StickyBuyBar />
+      <RecentPurchaseToast />
       <Hero />
       <LiveActivity />
       <TrustMetrics />

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import B2BEmailGate from '@/components/B2BEmailGate'
+import MarqueeAnnouncement from '@/components/MarqueeAnnouncement'
 
 export const metadata: Metadata = {
   title: 'Wholesale Partner Programme — SPORTVIO',
@@ -320,6 +321,7 @@ function B2BFooter() {
 export default function B2BPage() {
   return (
     <B2BEmailGate>
+      <MarqueeAnnouncement />
       <B2BHero />
       <MathSection />
       <Tiers />

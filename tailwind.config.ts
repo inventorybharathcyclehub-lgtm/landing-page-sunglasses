@@ -72,14 +72,34 @@ const config: Config = {
         'gold':    '0 0 0 1px rgba(0,82,255,0.15), 0 8px 24px rgba(0,82,255,0.2)', // legacy alias
       },
       animation: {
-        'ticker':  'ticker 40s linear infinite',
-        'fade-up': 'fadeUp 0.7s ease-out both',
-        'pulse-dot':'pulseDot 2s ease-in-out infinite',
+        'ticker':     'ticker 40s linear infinite',
+        'marquee':    'marquee 28s linear infinite',
+        'marquee-rev':'marqueeRev 32s linear infinite',
+        'ken-burns':  'kenBurns 18s ease-in-out infinite alternate',
+        'fade-up':    'fadeUp 0.7s ease-out both',
+        'pulse-dot':  'pulseDot 2s ease-in-out infinite',
+        'slide-up':   'slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both',
+        'slide-down': 'slideDown 0.3s cubic-bezier(0.4, 0, 1, 1) both',
+        'shimmer':    'shimmer 2.4s linear infinite',
+        'subtle-pulse':'subtlePulse 2.5s ease-in-out infinite',
+        'spin-slow':  'spin 8s linear infinite',
       },
       keyframes: {
         ticker: {
           '0%':   { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
+        },
+        marquee: {
+          '0%':   { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        marqueeRev: {
+          '0%':   { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        kenBurns: {
+          '0%':   { transform: 'scale(1) translate(0, 0)' },
+          '100%': { transform: 'scale(1.08) translate(-1%, -2%)' },
         },
         fadeUp: {
           '0%':   { opacity: '0', transform: 'translateY(20px)' },
@@ -88,6 +108,22 @@ const config: Config = {
         pulseDot: {
           '0%,100%': { opacity: '1' },
           '50%':     { opacity: '0.4' },
+        },
+        slideUp: {
+          '0%':   { opacity: '0', transform: 'translateY(24px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideDown: {
+          '0%':   { opacity: '1', transform: 'translateY(0)' },
+          '100%': { opacity: '0', transform: 'translateY(24px)' },
+        },
+        shimmer: {
+          '0%':   { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+        subtlePulse: {
+          '0%,100%': { boxShadow: '0 0 0 0 rgba(0,82,255,0.4)' },
+          '50%':     { boxShadow: '0 0 0 8px rgba(0,82,255,0)' },
         },
       },
     },
