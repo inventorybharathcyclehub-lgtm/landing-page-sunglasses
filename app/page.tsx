@@ -119,7 +119,28 @@ function Hero() {
           {/* Right: Product visual */}
           <div className="relative flex items-center justify-center lg:justify-end">
             <div className="relative w-full max-w-lg">
-              <div className="bg-warm-cream border border-warm-border rounded-3xl overflow-hidden aspect-square flex flex-col items-center justify-center p-12 relative">
+              <div className="relative rounded-3xl overflow-hidden aspect-square bg-warm-cream border border-warm-border">
+
+                {/* Primary product image */}
+                <img
+                  src="https://www.eyewearlabs.com/cdn/shop/files/RYKER_GHOSTLY_GREEN_Carousel_ad.png?crop=center&height=900&v=1767342109&width=900"
+                  alt="UV400 sports sunglasses for junior athletes"
+                  className="w-full h-full object-cover"
+                />
+
+                {/* Floating colorway thumbnails */}
+                <div className="absolute bottom-4 right-4 flex gap-2">
+                  <img
+                    src="https://www.eyewearlabs.com/cdn/shop/files/1_49c55e0d-b5b5-4533-be89-452ec4fecb8b.png?crop=center&height=80&v=1759923659&width=80"
+                    alt="XPLR Red colorway"
+                    className="w-14 h-14 object-contain rounded-xl bg-white/90 border border-warm-border p-1 shadow-card"
+                  />
+                  <img
+                    src="https://www.eyewearlabs.com/cdn/shop/files/Ryker_Night_Vision_Amazon.png?crop=center&height=80&v=1767342334&width=80"
+                    alt="Night Vision colorway"
+                    className="w-14 h-14 object-contain rounded-xl bg-white/90 border border-warm-border p-1 shadow-card"
+                  />
+                </div>
 
                 {/* Sport badges */}
                 <div className="absolute top-5 right-5 bg-gold text-white text-xs font-bold px-3 py-1.5 rounded-full">
@@ -128,30 +149,9 @@ function Hero() {
                 <div className="absolute top-5 left-5 pill text-xs">
                   For junior athletes
                 </div>
-                <div className="absolute bottom-5 left-5 bg-white border border-warm-border text-ink-muted text-xs px-3 py-1.5 rounded-full">
+                <div className="absolute bottom-5 left-5 bg-white/90 backdrop-blur-sm border border-warm-border text-ink-muted text-xs px-3 py-1.5 rounded-full">
                   Impact-grade lens
                 </div>
-
-                {/* SVG product placeholder */}
-                <svg viewBox="0 0 300 130" className="w-full max-w-[260px]" aria-label="SPORTVIO sport sunglasses">
-                  <defs>
-                    <linearGradient id="lensGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#9A7B2C" stopOpacity="0.28" />
-                      <stop offset="100%" stopColor="#D4AA52" stopOpacity="0.12" />
-                    </linearGradient>
-                  </defs>
-                  <path d="M8 30 Q8 62 18 62" stroke="#1A1612" strokeWidth="3.5" strokeLinecap="round" fill="none" opacity="0.7"/>
-                  <path d="M292 30 Q292 62 282 62" stroke="#1A1612" strokeWidth="3.5" strokeLinecap="round" fill="none" opacity="0.7"/>
-                  <ellipse cx="78" cy="62" rx="66" ry="48" fill="url(#lensGrad)" />
-                  <ellipse cx="222" cy="62" rx="66" ry="48" fill="url(#lensGrad)" />
-                  <ellipse cx="78" cy="62" rx="66" ry="48" fill="none" stroke="#1A1612" strokeWidth="2.5" opacity="0.7"/>
-                  <ellipse cx="222" cy="62" rx="66" ry="48" fill="none" stroke="#1A1612" strokeWidth="2.5" opacity="0.7"/>
-                  <path d="M144 58 Q150 52 156 58" stroke="#1A1612" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.7"/>
-                  <ellipse cx="62" cy="50" rx="18" ry="9" fill="white" opacity="0.35" transform="rotate(-15 62 50)"/>
-                  <ellipse cx="206" cy="50" rx="18" ry="9" fill="white" opacity="0.35" transform="rotate(-15 206 50)"/>
-                </svg>
-
-                <p className="text-ink-light text-xs mt-6 tracking-wider uppercase">Product photo coming soon</p>
               </div>
 
               {/* Spec cards */}
@@ -304,18 +304,24 @@ function SportContexts() {
       sport: 'Cricket',
       title: 'For the fielder, batter, and keeper.',
       desc: 'Anti-slip grip holds through dives. Impact-grade lens handles the sun at the boundary. Light enough to forget at long-on.',
+      img: 'https://www.eyewearlabs.com/cdn/shop/files/1_49c55e0d-b5b5-4533-be89-452ec4fecb8b.png?crop=center&height=400&v=1759923659&width=400',
+      imgAlt: 'XPLR sports sunglasses for cricket',
     },
     {
       icon: '🚴',
       sport: 'Cycling',
       title: 'For the rider who goes further.',
       desc: 'Wrap-fit stays on at speed. UV400 cuts the road glare. At 28g, your child will forget these are on — until they take them off.',
+      img: 'https://www.eyewearlabs.com/cdn/shop/files/RYKER_GHOSTLY_GREEN_Carousel_ad.png?crop=center&height=400&v=1767342109&width=400',
+      imgAlt: 'Ryker Ghostly Green sports sunglasses for cycling',
     },
     {
       icon: '⚽',
       sport: 'Football & Outdoor Play',
       title: 'For every match under the Indian sun.',
       desc: 'Designed for Indian summer conditions — morning school sport, afternoon matches, evening cycling. Built for the hours Indian kids actually play.',
+      img: 'https://www.eyewearlabs.com/cdn/shop/files/Ryker_Night_Vision_Amazon.png?crop=center&height=400&v=1767342334&width=400',
+      imgAlt: 'Ryker Night Vision sports sunglasses for outdoor play',
     },
   ]
 
@@ -330,12 +336,16 @@ function SportContexts() {
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {sports.map(({ icon, sport, title, desc }) => (
-            <div key={sport} className="card p-8">
-              <div className="text-4xl mb-3">{icon}</div>
-              <div className="label-xs mb-2">{sport}</div>
-              <h3 className="font-serif font-bold text-ink text-xl mb-3 leading-tight">{title}</h3>
-              <p className="text-ink-muted text-sm leading-relaxed">{desc}</p>
+          {sports.map(({ icon, sport, title, desc, img, imgAlt }) => (
+            <div key={sport} className="card overflow-hidden">
+              <div className="h-44 bg-warm-cream flex items-center justify-center p-4">
+                <img src={img} alt={imgAlt} className="h-full w-full object-contain" />
+              </div>
+              <div className="p-8">
+                <div className="label-xs mb-2">{sport}</div>
+                <h3 className="font-serif font-bold text-ink text-xl mb-3 leading-tight">{title}</h3>
+                <p className="text-ink-muted text-sm leading-relaxed">{desc}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -815,12 +825,22 @@ function ChampionKit() {
           {skus.map(({ icon, name, desc, status, available, price }) => (
             <div
               key={name}
-              className={`rounded-2xl p-7 border transition-all ${
+              className={`rounded-2xl border transition-all overflow-hidden ${
                 available
                   ? 'bg-ink border-ink shadow-card-lg'
                   : 'card-soft hover:border-warm-muted'
               }`}
             >
+              {available && (
+                <div className="h-52 bg-warm-cream flex items-center justify-center p-6">
+                  <img
+                    src="https://www.eyewearlabs.com/cdn/shop/files/8_a9c80efa-b559-4f9b-b62b-2d7b38a83b5b.png?crop=center&height=400&v=1767342109&width=400"
+                    alt="UV400 Sports Sunglasses"
+                    className="h-full w-full object-contain"
+                  />
+                </div>
+              )}
+              <div className="p-7">
               <div className="text-4xl mb-4">{icon}</div>
               <h3 className={`font-serif font-bold text-xl mb-2 ${available ? 'text-warm-white' : 'text-ink'}`}>
                 {name}
@@ -842,6 +862,7 @@ function ChampionKit() {
                     <span className="text-ink-light text-xs">Coming soon</span>
                   </>
                 )}
+              </div>
               </div>
             </div>
           ))}
