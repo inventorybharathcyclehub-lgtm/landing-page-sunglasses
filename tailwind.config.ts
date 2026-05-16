@@ -9,43 +9,72 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        warm: {
-          white:  '#FEFCF9',
-          cream:  '#F5F1EA',
-          border: '#E4DDD3',
-          muted:  '#C8BEB4',
+        // Background system — crisp, clean, technical
+        bg: {
+          DEFAULT: '#FFFFFF',
+          soft:    '#FAFAFA',
+          muted:   '#F4F4F5',
+          border:  '#E4E4E7',
         },
+        // Text — charcoal/black (performance, premium)
         ink: {
-          DEFAULT: '#1A1612',
-          soft:    '#2D2720',
-          muted:   '#6B5E52',
-          light:   '#9B8F85',
+          DEFAULT: '#0A0A0A',
+          soft:    '#171717',
+          muted:   '#525252',
+          light:   '#A3A3A3',
+        },
+        // Electric blue — performance accent (replaces gold)
+        electric: {
+          DEFAULT: '#0052FF',
+          light:   '#3D75FF',
+          pale:    '#EFF4FF',
+          deep:    '#0040CC',
+        },
+        // Performance signals
+        forest: {
+          DEFAULT: '#059669',
+          light:   '#10B981',
+          pale:    '#ECFDF5',
+        },
+        ember:  '#DC2626',
+        signal: {
+          yellow: '#FACC15',
+          pale:   '#FEFCE8',
+        },
+        // Legacy aliases (keep working while transitioning)
+        warm: {
+          white:  '#FFFFFF',
+          cream:  '#FAFAFA',
+          border: '#E4E4E7',
+          muted:  '#A3A3A3',
         },
         gold: {
-          DEFAULT: '#9A7B2C',
-          light:   '#B89438',
-          pale:    '#F8F0DC',
-          deep:    '#7A611E',
+          DEFAULT: '#0052FF',
+          light:   '#3D75FF',
+          pale:    '#EFF4FF',
+          deep:    '#0040CC',
         },
-        forest: {
-          DEFAULT: '#1E5C3A',
-          light:   '#25784D',
-          pale:    '#EAF4EE',
-        },
-        ember: '#B04020',
       },
       fontFamily: {
-        sans:  ['Inter',            'system-ui', 'sans-serif'],
-        serif: ['"Playfair Display"', 'Georgia',   'serif'],
+        sans:    ['Inter', 'system-ui', 'sans-serif'],
+        display: ['"Space Grotesk"', 'Inter', 'system-ui', 'sans-serif'],
+        serif:   ['"Space Grotesk"', 'Inter', 'system-ui', 'sans-serif'], // legacy alias
+        mono:    ['"JetBrains Mono"', '"SF Mono"', 'monospace'],
+      },
+      letterSpacing: {
+        'tightest': '-0.04em',
+        'tighter':  '-0.025em',
       },
       boxShadow: {
-        'card':    '0 1px 3px rgba(26,22,18,0.08), 0 4px 16px rgba(26,22,18,0.06)',
-        'card-lg': '0 4px 8px rgba(26,22,18,0.07), 0 16px 40px rgba(26,22,18,0.10)',
-        'gold':    '0 4px 20px rgba(154,123,44,0.25)',
+        'card':    '0 1px 2px rgba(10,10,10,0.04), 0 2px 8px rgba(10,10,10,0.05)',
+        'card-lg': '0 2px 4px rgba(10,10,10,0.06), 0 12px 32px rgba(10,10,10,0.08)',
+        'electric':'0 0 0 1px rgba(0,82,255,0.15), 0 8px 24px rgba(0,82,255,0.2)',
+        'gold':    '0 0 0 1px rgba(0,82,255,0.15), 0 8px 24px rgba(0,82,255,0.2)', // legacy alias
       },
       animation: {
         'ticker':  'ticker 40s linear infinite',
         'fade-up': 'fadeUp 0.7s ease-out both',
+        'pulse-dot':'pulseDot 2s ease-in-out infinite',
       },
       keyframes: {
         ticker: {
@@ -55,6 +84,10 @@ const config: Config = {
         fadeUp: {
           '0%':   { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        pulseDot: {
+          '0%,100%': { opacity: '1' },
+          '50%':     { opacity: '0.4' },
         },
       },
     },

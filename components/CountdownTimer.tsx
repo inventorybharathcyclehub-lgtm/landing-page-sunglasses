@@ -36,16 +36,16 @@ export default function CountdownTimer() {
   const pad = (n: number) => n.toString().padStart(2, '0')
 
   return (
-    <div className="flex items-center gap-1 font-mono font-black text-orange-400">
-      <div className="bg-slate-800 rounded px-2 py-1 text-lg leading-none">
+    <div className="flex items-center gap-1 font-mono font-bold text-ink">
+      <div className="bg-ink text-white rounded px-2 py-1 text-sm leading-none">
         {pad(time.hours)}
       </div>
-      <span className="text-orange-500">:</span>
-      <div className="bg-slate-800 rounded px-2 py-1 text-lg leading-none">
+      <span className="text-electric">:</span>
+      <div className="bg-ink text-white rounded px-2 py-1 text-sm leading-none">
         {pad(time.minutes)}
       </div>
-      <span className="text-orange-500">:</span>
-      <div className="bg-slate-800 rounded px-2 py-1 text-lg leading-none">
+      <span className="text-electric">:</span>
+      <div className="bg-ink text-white rounded px-2 py-1 text-sm leading-none">
         {pad(time.seconds)}
       </div>
     </div>

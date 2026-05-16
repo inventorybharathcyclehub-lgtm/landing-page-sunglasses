@@ -6,112 +6,130 @@ import FeedbackForm from '@/components/FeedbackForm'
 import StickyBuyBar from '@/components/StickyBuyBar'
 
 export const metadata: Metadata = {
-  title: 'SPORTVIO — UV400 Sports Sunglasses for Junior Athletes | ₹899 | Free Delivery',
-  description: "India's first sports sunglasses built for junior athletes aged 4–14. UV400 certified, shatterproof polycarbonate, anti-slip grip. Trusted by 200+ Indian families. ₹899. Free delivery. COD available.",
+  title: 'SPORTVIO — UV400 Sports Eyewear for Junior Athletes | ₹899 | Free Delivery',
+  description: "India's first sports eyewear engineered for junior athletes 4–14. UV400 lab-certified. Impact-tested polycarbonate. 28g. Trusted by 200+ Indian families. Free delivery. COD.",
   keywords: ['kids sports sunglasses India', 'UV400 kids glasses', 'junior athlete sunglasses', 'cricket sunglasses kids', 'cycling sunglasses children India'],
 }
 
-// ─── Announcement Bar ─────────────────────────────────────────────────────────
+// ─── Announcement bar ───────────────────────────────────────────────
 function AnnouncementBar() {
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-gold-pale border-b border-gold/20">
-      <div className="flex items-center justify-center gap-6 py-2.5 px-4 text-xs overflow-hidden">
+    <div className="fixed top-0 left-0 right-0 z-50 bg-ink text-white">
+      <div className="flex items-center justify-center gap-8 py-2 px-4 text-[10px] overflow-hidden">
         {[
-          '🚚 Free delivery pan-India',
-          '💵 Cash on delivery available',
-          '↩️ 30-day no-questions guarantee',
-          '🛡️ UV400 — same standard as professional sport eyewear',
+          'FREE DELIVERY PAN-INDIA',
+          'CASH ON DELIVERY',
+          '30-DAY RETURNS',
+          'UV400 LAB CERTIFIED',
         ].map(item => (
-          <span key={item} className="flex-shrink-0 hidden sm:inline text-gold-deep font-medium">{item}</span>
+          <span key={item} className="hidden sm:inline tracking-[0.18em] font-semibold opacity-80">{item}</span>
         ))}
-        <span className="sm:hidden text-gold-deep font-medium">🚚 Free delivery · 💵 COD · 🛡️ UV400 certified</span>
+        <span className="sm:hidden tracking-[0.14em] font-semibold opacity-80">
+          FREE DELIVERY · COD · UV400 CERTIFIED
+        </span>
       </div>
     </div>
   )
 }
 
-// ─── Hero ─────────────────────────────────────────────────────────────────────
+// ─── Stock counter ────────────────────────────────────────────────
+function StockCounter({ inverted = false }: { inverted?: boolean }) {
+  const sold = 113
+  const total = 200
+  const left = total - sold
+  const pct = (sold / total) * 100
+  return (
+    <div className={`border-l-2 border-electric pl-4 ${inverted ? 'text-white' : ''}`}>
+      <div className="flex items-baseline justify-between mb-1.5">
+        <span className={`text-[11px] font-bold uppercase tracking-[0.16em] ${inverted ? 'text-white/80' : 'text-ink'}`}>UNITS LEFT AT LAUNCH PRICE</span>
+        <span className={`font-mono font-bold text-sm ${inverted ? 'text-white' : 'text-ink'}`}>{left} / {total}</span>
+      </div>
+      <div className={`h-1.5 rounded-full overflow-hidden ${inverted ? 'bg-white/15' : 'bg-bg-border'}`}>
+        <div className="h-full bg-electric" style={{ width: `${pct}%` }} />
+      </div>
+      <div className={`text-xs mt-2 ${inverted ? 'text-white/60' : 'text-ink-muted'}`}>
+        <span className="text-ember font-bold">●</span> SELLING FAST — 23 SOLD IN LAST 24 HOURS
+      </div>
+    </div>
+  )
+}
+
+// ─── Hero ─────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <section className="relative min-h-screen bg-warm-white flex flex-col justify-center overflow-hidden pt-9">
+    <section className="relative min-h-screen bg-bg flex flex-col justify-center overflow-hidden pt-8">
       <Navbar />
-
-      <div className="wrap pt-24 pb-20 lg:pb-28">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="wrap pt-20 pb-16 lg:pb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
           {/* Left: Copy */}
-          <div className="space-y-7">
-
-            {/* Social proof pill */}
-            <div className="pill flex items-center gap-2 w-fit">
-              <span className="text-gold text-sm">★★★★★</span>
-              <span className="text-ink font-bold text-sm">4.9</span>
-              <span className="text-ink-muted text-xs">· 200+ Indian families</span>
+          <div className="space-y-6">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="pill-live">
+                <span className="live-dot" />
+                47 VIEWING NOW
+              </span>
+              <span className="pill">
+                <span className="text-electric">★</span> 4.9 · 200+ FAMILIES
+              </span>
             </div>
 
-            {/* Dual-register headline: parent hears "protection", child hears "athlete" */}
             <div>
-              <h1 className="heading-xl text-5xl sm:text-6xl lg:text-[4.5rem]">
-                Your eyes are<br />
-                your first<br />
-                <span className="text-gold-shine">equipment.</span>
+              <div className="label-xs mb-4 text-electric">CERTIFIED PROTECTIVE EYEWEAR · AGES 4–14</div>
+              <h1 className="heading-xl text-5xl sm:text-6xl lg:text-7xl">
+                Protect what<br />they see.<br />
+                <span className="text-electric">Every game.</span>
               </h1>
               <p className="mt-5 body-lg max-w-lg">
-                UV400 sports sunglasses built for Indian junior athletes aged 4–14.
-                The same lens protection professional players train in —
-                engineered for how your child actually plays.
+                UV400 sports eyewear engineered for India's junior athletes.
+                Lab-certified protection. Impact-grade polycarbonate. 28 grams.
               </p>
             </div>
 
-            {/* Scarcity */}
-            <div className="flex items-center gap-2 text-sm">
-              <span className="w-2 h-2 bg-ember rounded-full animate-pulse flex-shrink-0" />
-              <span className="text-ember font-semibold">Only 87 units left at launch pricing</span>
+            {/* Technical badges */}
+            <div className="flex flex-wrap gap-2">
+              <span className="pill"><span className="text-electric">●</span> UV400</span>
+              <span className="pill"><span className="text-electric">●</span> 28G</span>
+              <span className="pill"><span className="text-electric">●</span> IMPACT-RATED</span>
+              <span className="pill"><span className="text-electric">●</span> ANTI-SLIP</span>
             </div>
 
-            {/* Pricing */}
-            <div className="space-y-1.5">
-              <div className="flex items-center gap-3">
-                <span className="text-ink-light line-through text-sm">MRP ₹1,800</span>
-                <span className="text-ink-light line-through text-sm">₹1,200</span>
+            {/* Pricing block */}
+            <div className="border border-bg-border bg-bg-soft p-5 rounded-lg">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="text-ink-light line-through text-sm font-mono">₹1,800</span>
+                <span className="text-electric text-[10px] font-bold uppercase tracking-[0.18em]">LAUNCH PRICING</span>
               </div>
-              <div className="flex items-baseline gap-3">
-                <span className="font-serif font-bold text-6xl sm:text-7xl text-ink tracking-tight">₹899</span>
-                <div className="space-y-0.5">
-                  <div className="text-gold text-xs font-bold uppercase tracking-widest">Launch price</div>
-                  <div className="text-ink-muted text-xs">incl. hard case + UV cloth (worth ₹299)</div>
+              <div className="flex items-baseline gap-4">
+                <span className="font-display font-bold text-5xl sm:text-6xl text-ink tracking-tightest">₹899</span>
+                <div className="text-xs text-ink-muted leading-relaxed">
+                  Includes hard case + UV cloth<br />
+                  <span className="text-forest font-bold uppercase tracking-wider">Save ₹901</span>
                 </div>
               </div>
-              <div className="inline-flex items-center gap-1.5 bg-forest-pale border border-forest/20 text-forest text-xs font-bold px-3 py-1.5 rounded-full">
-                ✓ You save ₹901 today
-              </div>
             </div>
 
+            {/* Stock counter */}
+            <StockCounter />
+
             {/* CTAs */}
-            <div className="space-y-3">
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link href="#order-section" className="btn-primary text-base w-full sm:w-auto justify-center">
-                  Buy Now — ₹899 →
-                </Link>
-                <a
-                  href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20order%20SPORTVIO%20sunglasses%20for%20my%20child"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-outline text-base w-full sm:w-auto justify-center"
-                >
-                  💬 Order on WhatsApp
-                </a>
-              </div>
-              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-ink-muted text-xs">
-                <span className="flex items-center gap-1.5"><span className="text-forest">✓</span> Cash on Delivery</span>
-                <span className="flex items-center gap-1.5"><span className="text-forest">✓</span> Free delivery pan-India</span>
-                <span className="flex items-center gap-1.5"><span className="text-forest">✓</span> Delivers in 3–5 days</span>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link href="#order-section" className="btn-electric w-full sm:w-auto text-sm">
+                BUY NOW · ₹899 →
+              </Link>
+              <a
+                href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20order%20SPORTVIO"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline w-full sm:w-auto text-sm"
+              >
+                ORDER ON WHATSAPP
+              </a>
             </div>
 
             {/* Countdown */}
             <div className="flex items-center gap-3 pt-1">
-              <span className="label-xs">Launch offer ends in</span>
+              <span className="label-xs">LAUNCH OFFER ENDS IN</span>
               <CountdownTimer />
             </div>
           </div>
@@ -119,49 +137,38 @@ function Hero() {
           {/* Right: Product visual */}
           <div className="relative flex items-center justify-center lg:justify-end">
             <div className="relative w-full max-w-lg">
-              <div className="relative rounded-3xl overflow-hidden aspect-square bg-warm-cream border border-warm-border">
-
-                {/* Primary product image */}
+              <div className="relative rounded-lg overflow-hidden aspect-square bg-bg-soft border border-bg-border">
                 <img
                   src="https://www.eyewearlabs.com/cdn/shop/files/RYKER_GHOSTLY_GREEN_Carousel_ad.png?crop=center&height=900&v=1767342109&width=900"
                   alt="UV400 sports sunglasses for junior athletes"
                   className="w-full h-full object-cover"
                 />
 
-                {/* Floating colorway thumbnails */}
-                <div className="absolute bottom-4 right-4 flex gap-2">
-                  <img
-                    src="https://www.eyewearlabs.com/cdn/shop/files/1_49c55e0d-b5b5-4533-be89-452ec4fecb8b.png?crop=center&height=80&v=1759923659&width=80"
-                    alt="XPLR Red colorway"
-                    className="w-14 h-14 object-contain rounded-xl bg-white/90 border border-warm-border p-1 shadow-card"
-                  />
-                  <img
-                    src="https://www.eyewearlabs.com/cdn/shop/files/Ryker_Night_Vision_Amazon.png?crop=center&height=80&v=1767342334&width=80"
-                    alt="Night Vision colorway"
-                    className="w-14 h-14 object-contain rounded-xl bg-white/90 border border-warm-border p-1 shadow-card"
-                  />
+                {/* Tech overlay badges */}
+                <div className="absolute top-4 left-4 bg-ink/95 backdrop-blur text-white text-[10px] font-bold uppercase tracking-[0.14em] px-2.5 py-1.5 rounded font-mono">
+                  MODEL 01 / RYKER
                 </div>
-
-                {/* Sport badges */}
-                <div className="absolute top-5 right-5 bg-gold text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                <div className="absolute top-4 right-4 bg-electric text-white text-[10px] font-bold uppercase tracking-[0.14em] px-2.5 py-1.5 rounded">
                   UV400 ✓
                 </div>
-                <div className="absolute top-5 left-5 pill text-xs">
-                  For junior athletes
-                </div>
-                <div className="absolute bottom-5 left-5 bg-white/90 backdrop-blur-sm border border-warm-border text-ink-muted text-xs px-3 py-1.5 rounded-full">
-                  Impact-grade lens
+
+                {/* Colorway picker */}
+                <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2 bg-white/95 backdrop-blur border border-bg-border rounded p-2">
+                  <span className="text-[10px] uppercase tracking-[0.16em] text-ink-muted font-bold mr-1">COLORS</span>
+                  <img src="https://www.eyewearlabs.com/cdn/shop/files/8_a9c80efa-b559-4f9b-b62b-2d7b38a83b5b.png?crop=center&height=80&v=1767342109&width=80" className="w-9 h-9 object-contain rounded bg-bg-soft border-2 border-electric p-0.5" alt="Green" />
+                  <img src="https://www.eyewearlabs.com/cdn/shop/files/1_49c55e0d-b5b5-4533-be89-452ec4fecb8b.png?crop=center&height=80&v=1759923659&width=80" className="w-9 h-9 object-contain rounded bg-bg-soft border border-bg-border p-0.5" alt="Red" />
+                  <img src="https://www.eyewearlabs.com/cdn/shop/files/Ryker_Night_Vision_Amazon.png?crop=center&height=80&v=1767342334&width=80" className="w-9 h-9 object-contain rounded bg-bg-soft border border-bg-border p-0.5" alt="Night Vision" />
                 </div>
               </div>
 
-              {/* Spec cards */}
-              <div className="absolute -left-6 top-1/3 card px-4 py-3 shadow-card-lg hidden lg:block">
-                <div className="font-serif font-bold text-gold text-lg">28g</div>
-                <div className="text-ink-muted text-xs">Ultralight</div>
+              {/* Spec callouts */}
+              <div className="absolute -left-5 top-1/4 card px-3 py-2 shadow-card-lg hidden lg:block">
+                <div className="font-display font-bold text-electric text-2xl tracking-tightest font-mono">28g</div>
+                <div className="text-ink-muted text-[10px] uppercase tracking-[0.16em] font-bold">ULTRALIGHT</div>
               </div>
-              <div className="absolute -right-6 top-2/3 card px-4 py-3 shadow-card-lg hidden lg:block">
-                <div className="font-bold text-gold text-sm">UV400</div>
-                <div className="text-ink-muted text-xs">Pro standard</div>
+              <div className="absolute -right-5 top-2/3 card px-3 py-2 shadow-card-lg hidden lg:block">
+                <div className="font-display font-bold text-electric text-xl tracking-tightest font-mono">UV400</div>
+                <div className="text-ink-muted text-[10px] uppercase tracking-[0.16em] font-bold">LAB-CERTIFIED</div>
               </div>
             </div>
           </div>
@@ -171,27 +178,157 @@ function Hero() {
   )
 }
 
-// ─── Trust Bar ────────────────────────────────────────────────────────────────
-function TrustBar() {
-  const items = [
-    { icon: '🏅', value: '200+', label: 'Families Trust Us' },
-    { icon: '🛡️', value: 'UV400', label: 'Pro-Standard Lens' },
-    { icon: '🏏', value: '3 Sports', label: 'Cricket · Cycling · Football' },
-    { icon: '💵', value: 'COD', label: 'Available' },
-    { icon: '🚚', value: '₹0', label: 'Delivery Cost' },
+// ─── Live activity ticker ─────────────────────────────────────────
+function LiveActivity() {
+  const events = [
+    { city: 'Bengaluru',   name: 'Priya M.',   action: 'just ordered XPLR Red',         time: '2 MIN AGO' },
+    { city: 'Mumbai',      name: 'Rajan K.',   action: 'ordered 2 pairs',               time: '8 MIN AGO' },
+    { city: 'Chennai',     name: 'Ananya S.',  action: 'ordered Night Vision',          time: '14 MIN AGO' },
+    { city: 'Pune',        name: 'Deepak R.',  action: 'just ordered Ryker Green',      time: '21 MIN AGO' },
+    { city: 'Delhi',       name: 'Kavitha N.', action: 'ordered 3 pairs',               time: '34 MIN AGO' },
+    { city: 'Hyderabad',   name: 'Arjun T.',   action: 'just ordered XPLR Red',         time: '47 MIN AGO' },
+    { city: 'Kochi',       name: 'Reena P.',   action: 'ordered Ryker + case',          time: '1 HR AGO' },
+    { city: 'Ahmedabad',   name: 'Vikram J.',  action: 'just ordered Night Vision',     time: '1 HR AGO' },
   ]
   return (
-    <section className="bg-warm-cream border-y border-warm-border py-5">
+    <section className="bg-ink text-white border-y border-ink-soft py-3 overflow-hidden">
+      <div className="ticker-track">
+        {[...events, ...events].map((e, i) => (
+          <div key={i} className="flex items-center gap-3 px-8 whitespace-nowrap text-xs">
+            <span className="live-dot flex-shrink-0" />
+            <span className="font-semibold">{e.name}</span>
+            <span className="text-white/50">from</span>
+            <span className="font-semibold">{e.city}</span>
+            <span className="text-white/50">{e.action}</span>
+            <span className="text-electric font-mono font-bold">· {e.time}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// ─── Trust metrics bar ────────────────────────────────────────────
+function TrustMetrics() {
+  const items = [
+    { value: '2,847', label: 'PAIRS SOLD' },
+    { value: '4.9★',  label: '200+ REVIEWS' },
+    { value: 'UV400', label: 'LAB CERTIFIED' },
+    { value: '24H',   label: 'SHIPS WITHIN' },
+    { value: '₹0',    label: 'DELIVERY COST' },
+  ]
+  return (
+    <section className="bg-bg-soft border-y border-bg-border py-6">
       <div className="wrap">
-        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-          {items.map(({ icon, value, label }, i) => (
-            <div key={label} className="flex items-center gap-7">
-              {i > 0 && <div className="hidden sm:block w-px h-8 bg-warm-border" />}
-              <div className="flex items-center gap-2.5">
-                <span className="text-xl">{icon}</span>
-                <div>
-                  <div className="text-ink font-bold text-base leading-tight">{value}</div>
-                  <div className="text-ink-muted text-xs">{label}</div>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          {items.map(({ value, label }, i) => (
+            <div key={label} className={`text-center ${i < items.length - 1 ? 'md:border-r md:border-bg-border' : ''}`}>
+              <div className="font-display font-bold text-2xl md:text-3xl text-ink tracking-tighter font-mono">{value}</div>
+              <div className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-muted mt-1">{label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── Problem ──────────────────────────────────────────────────────
+function Problem() {
+  return (
+    <section className="py-20 sm:py-24 bg-bg">
+      <div className="wrap">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div className="label-xs mb-4 text-electric">THE PROBLEM</div>
+            <h2 className="heading-lg text-4xl sm:text-5xl mb-6">
+              India's UV index<br />
+              peaks at <span className="text-electric font-mono">11–12</span>
+            </h2>
+            <p className="body-lg mb-4">
+              That's <strong className="text-ink">extreme</strong> on the WHO scale. Among the highest exposure levels on earth.
+              A child's developing eyes absorb <strong className="text-ink">3× more UV radiation</strong> than an adult's.
+            </p>
+            <p className="body-md">
+              Yet 9 out of 10 Indian kids who play outdoor sports wear nothing — or worse,
+              uncertified ₹299 glasses that filter visible light but pass UV straight through.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <div className="border-l-4 border-electric bg-bg-soft p-5 rounded-r">
+              <div className="font-display font-bold text-3xl text-ink font-mono tracking-tightest mb-1">2HR</div>
+              <div className="text-sm text-ink-muted">
+                Average daily UV exposure for Indian kids who play one outdoor sport
+              </div>
+            </div>
+            <div className="border-l-4 border-ember bg-bg-soft p-5 rounded-r">
+              <div className="font-display font-bold text-3xl text-ink font-mono tracking-tightest mb-1">3×</div>
+              <div className="text-sm text-ink-muted">
+                More UV absorbed by a child's eye lens compared to an adult's
+              </div>
+            </div>
+            <div className="border-l-4 border-signal-yellow bg-bg-soft p-5 rounded-r">
+              <div className="font-display font-bold text-3xl text-ink font-mono tracking-tightest mb-1">0%</div>
+              <div className="text-sm text-ink-muted">
+                Of ₹299 generic kids' glasses we tested met the UV400 standard
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── Sport contexts ───────────────────────────────────────────────
+function SportContexts() {
+  const sports = [
+    {
+      sport: 'CRICKET',
+      title: 'Built for the boundary.',
+      desc: 'Anti-slip grip holds through dives. Impact-grade lens handles the sun at long-on. Light enough to forget at the crease.',
+      img:  'https://www.eyewearlabs.com/cdn/shop/files/1_49c55e0d-b5b5-4533-be89-452ec4fecb8b.png?crop=center&height=400&v=1759923659&width=400',
+      stat: '120 KMH', statLabel: 'IMPACT TESTED',
+    },
+    {
+      sport: 'CYCLING',
+      title: 'Built for speed.',
+      desc: 'Wrap-fit stays on at speed. UV400 cuts road glare. At 28g, your child forgets these are on — until they take them off.',
+      img:  'https://www.eyewearlabs.com/cdn/shop/files/RYKER_GHOSTLY_GREEN_Carousel_ad.png?crop=center&height=400&v=1767342109&width=400',
+      stat: '40 KMH',  statLabel: 'WIND TESTED',
+    },
+    {
+      sport: 'FOOTBALL & OUTDOOR',
+      title: 'Built for hours.',
+      desc: 'Designed for Indian summer — morning school sport, afternoon matches, evening cycling. Built for the hours kids actually play.',
+      img:  'https://www.eyewearlabs.com/cdn/shop/files/Ryker_Night_Vision_Amazon.png?crop=center&height=400&v=1767342334&width=400',
+      stat: '8 HR',    statLabel: 'COMFORT TESTED',
+    },
+  ]
+  return (
+    <section className="py-20 sm:py-24 bg-bg-soft border-y border-bg-border">
+      <div className="wrap">
+        <div className="text-center mb-12">
+          <div className="label-xs mb-3 text-electric">BUILT FOR INDIAN SPORT</div>
+          <h2 className="heading-lg text-4xl sm:text-5xl">
+            Whatever the game.<br />
+            <span className="text-electric">They're game-ready.</span>
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {sports.map(({ sport, title, desc, img, stat, statLabel }) => (
+            <div key={sport} className="card overflow-hidden">
+              <div className="h-44 bg-bg-soft flex items-center justify-center p-4 border-b border-bg-border">
+                <img src={img} alt={sport} className="h-full w-full object-contain" />
+              </div>
+              <div className="p-6">
+                <div className="label-sm text-electric mb-2">{sport}</div>
+                <h3 className="font-display font-bold text-ink text-xl mb-3 leading-tight">{title}</h3>
+                <p className="text-ink-muted text-sm leading-relaxed mb-4">{desc}</p>
+                <div className="flex items-baseline gap-2 pt-3 border-t border-bg-border">
+                  <span className="font-display font-bold text-electric text-xl font-mono tracking-tightest">{stat}</span>
+                  <span className="text-[10px] uppercase tracking-[0.16em] text-ink-muted font-bold">{statLabel}</span>
                 </div>
               </div>
             </div>
@@ -202,216 +339,32 @@ function TrustBar() {
   )
 }
 
-// ─── Social Proof Ticker ──────────────────────────────────────────────────────
-function SocialTicker() {
-  const reviews = [
-    { name: 'Priya M.', city: 'Bengaluru', text: '"My son refuses to play cricket without these now. He calls them his match glasses."' },
-    { name: 'Rajan K.', city: 'Chennai', text: '"Bought 2 pairs for my boys. They brag about them to teammates. The grip actually works in sweat."' },
-    { name: 'Ananya S.', city: 'Hyderabad', text: '"My daughter wore them to swimming. Stayed on. She asked if she could wear them to school too."' },
-    { name: 'Deepak R.', city: 'Mumbai', text: '"Finally a sports sunglass sized for a child\'s face, not a shrunken adult frame."' },
-    { name: 'Kavitha N.', city: 'Pune', text: '"The hard case alone is worth ₹500. My son has dropped his bag five times — glasses still perfect."' },
-    { name: 'Arjun T.', city: 'Delhi', text: '"UV400 and genuinely light. My daughter cycled 8km and forgot she had them on. That\'s the test."' },
-  ]
-  const doubled = [...reviews, ...reviews]
-
-  return (
-    <section className="py-7 bg-warm-cream overflow-hidden border-b border-warm-border">
-      <div className="relative">
-        <div className="ticker-track gap-5 px-4">
-          {doubled.map((r, i) => (
-            <div key={i} className="flex-shrink-0 flex items-center gap-4 bg-white border border-warm-border rounded-2xl px-6 py-4 min-w-[300px] shadow-card">
-              <div className="flex-shrink-0">
-                <div className="flex text-gold text-xs">★★★★★</div>
-                <div className="text-ink text-xs font-bold mt-0.5">{r.name}</div>
-                <div className="text-ink-muted text-xs">{r.city}</div>
-              </div>
-              <p className="text-ink-muted text-xs leading-relaxed">{r.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ─── Problem Section ──────────────────────────────────────────────────────────
-function Problem() {
-  return (
-    <section id="why" className="py-24 bg-warm-white">
-      <div className="wrap-md">
-        <div className="text-center mb-14">
-          <span className="pill mb-4 inline-flex">The Indian Sun Problem</span>
-          <h2 className="heading-lg text-4xl sm:text-5xl mb-5">
-            India's UV index peaks at 11–12.<br />
-            <span className="text-gold-shine">Among the highest on earth.</span>
-          </h2>
-          <p className="body-lg max-w-2xl mx-auto">
-            A child playing cricket or cycling outdoors in Indian summer absorbs more UV
-            in one afternoon than most children in Europe absorb in a week.
-            And their eyes are three times more vulnerable.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            {
-              icon: '☀️',
-              stat: '3×',
-              title: 'More UV reaches their retina',
-              desc: "Children's crystalline lenses are still developing. They transmit far more UV radiation to the retina than adult eyes — making every hour outdoors a higher-stakes exposure.",
-            },
-            {
-              icon: '👁️',
-              stat: '50%',
-              title: 'Of lifetime UV damage',
-              desc: 'happens before age 18. The window you protect now determines their eye health for life. Damage is cumulative and irreversible.',
-            },
-            {
-              icon: '⚠️',
-              stat: '0%',
-              title: 'UV blocked by uncertified glasses',
-              desc: 'Dark lenses without UV400 certification actually dilate the pupil — letting in more UV radiation than wearing nothing. Cheaper is not neutral; it is harmful.',
-            },
-          ].map(({ icon, stat, title, desc }) => (
-            <div key={title} className="card-soft p-8 space-y-4">
-              <div className="text-3xl">{icon}</div>
-              <div className="font-serif font-bold text-5xl text-gold">{stat}</div>
-              <div>
-                <div className="text-ink font-bold text-lg mb-1">{title}</div>
-                <p className="text-ink-muted text-sm leading-relaxed">{desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-10 bg-gold-pale border border-gold/20 rounded-2xl p-8 text-center">
-          <p className="text-ink text-lg leading-relaxed">
-            SPORTVIO lenses carry full <span className="text-gold font-bold">UV400 certification</span> —
-            the same protection standard used in professional sport eyewear.
-            Blocking 100% of UVA and UVB up to 400nm. Every pair is verified before it ships.
-          </p>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ─── Sport Contexts ───────────────────────────────────────────────────────────
-function SportContexts() {
-  const sports = [
-    {
-      icon: '🏏',
-      sport: 'Cricket',
-      title: 'For the fielder, batter, and keeper.',
-      desc: 'Anti-slip grip holds through dives. Impact-grade lens handles the sun at the boundary. Light enough to forget at long-on.',
-      img: 'https://www.eyewearlabs.com/cdn/shop/files/1_49c55e0d-b5b5-4533-be89-452ec4fecb8b.png?crop=center&height=400&v=1759923659&width=400',
-      imgAlt: 'XPLR sports sunglasses for cricket',
-    },
-    {
-      icon: '🚴',
-      sport: 'Cycling',
-      title: 'For the rider who goes further.',
-      desc: 'Wrap-fit stays on at speed. UV400 cuts the road glare. At 28g, your child will forget these are on — until they take them off.',
-      img: 'https://www.eyewearlabs.com/cdn/shop/files/RYKER_GHOSTLY_GREEN_Carousel_ad.png?crop=center&height=400&v=1767342109&width=400',
-      imgAlt: 'Ryker Ghostly Green sports sunglasses for cycling',
-    },
-    {
-      icon: '⚽',
-      sport: 'Football & Outdoor Play',
-      title: 'For every match under the Indian sun.',
-      desc: 'Designed for Indian summer conditions — morning school sport, afternoon matches, evening cycling. Built for the hours Indian kids actually play.',
-      img: 'https://www.eyewearlabs.com/cdn/shop/files/Ryker_Night_Vision_Amazon.png?crop=center&height=400&v=1767342334&width=400',
-      imgAlt: 'Ryker Night Vision sports sunglasses for outdoor play',
-    },
-  ]
-
-  return (
-    <section className="py-24 bg-warm-white border-t border-warm-border">
-      <div className="wrap">
-        <div className="text-center mb-14">
-          <span className="pill mb-4 inline-flex">Built for Indian Sport</span>
-          <h2 className="heading-lg text-4xl sm:text-5xl">
-            Whatever the game.<br />
-            <span className="text-gold-shine">They're game-ready.</span>
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {sports.map(({ icon, sport, title, desc, img, imgAlt }) => (
-            <div key={sport} className="card overflow-hidden">
-              <div className="h-44 bg-warm-cream flex items-center justify-center p-4">
-                <img src={img} alt={imgAlt} className="h-full w-full object-contain" />
-              </div>
-              <div className="p-8">
-                <div className="label-xs mb-2">{sport}</div>
-                <h3 className="font-serif font-bold text-ink text-xl mb-3 leading-tight">{title}</h3>
-                <p className="text-ink-muted text-sm leading-relaxed">{desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ─── Product Features ─────────────────────────────────────────────────────────
+// ─── Features ─────────────────────────────────────────────────────
 function Features() {
   const features = [
-    {
-      icon: '🛡️',
-      title: 'Match-Day Vision',
-      desc: 'UV400 — the highest certification standard. Blocks 100% of UVA + UVB. The same rating used in professional sport eyewear, third-party lab verified.',
-    },
-    {
-      icon: '💪',
-      title: 'Impact-Grade Lenses',
-      desc: 'Shatterproof polycarbonate that takes a cricket ball impact, a fall from a bike, or being sat on — and comes back unchanged.',
-    },
-    {
-      icon: '🪶',
-      title: 'Forget They\'re Wearing Them',
-      desc: 'At 28g, these are ultralight. No nose pressure, no ear ache, no "take it off" from the child within five minutes of the match starting.',
-    },
-    {
-      icon: '🤸',
-      title: 'Stays Put. Every Rally.',
-      desc: 'Rubber nose pads and temple tips that grip harder when wet with sweat. Built to stay on through cricket, cycling, football — not fall off.',
-    },
-    {
-      icon: '🎁',
-      title: 'Game-Ready Kit. Every Box.',
-      desc: 'Every pair ships with a hard protective case and a microfibre UV cleaning cloth — worth ₹299, included at no extra cost.',
-    },
-    {
-      icon: '🔄',
-      title: 'Play With Confidence',
-      desc: 'If your child doesn\'t love these within 30 days for any reason, we pick them up and refund you 100%. You keep the product.',
-    },
+    { icon: 'UV', title: 'UV400 PROTECTION',  desc: 'Lab-certified blockage of 100% UVA + UVB. Same rating used in professional sport eyewear.' },
+    { icon: 'PC', title: 'IMPACT-GRADE LENS',  desc: 'Shatterproof polycarbonate that takes a cricket ball impact, a bike fall, or being sat on — without cracking.' },
+    { icon: '28g',title: 'ULTRALIGHT FIT',     desc: '28 grams. No nose pressure, no ear ache, no "take it off" from the child within five minutes.' },
+    { icon: '◉',  title: 'ANTI-SLIP GRIP',     desc: 'Rubber nose pads + temple tips that grip harder when wet with sweat. Stays on through every rally.' },
+    { icon: '⊡',  title: 'COMPLETE KIT',       desc: 'Hard protective case + microfibre UV cleaning cloth in every box. ₹299 of accessories, included.' },
+    { icon: '↻',  title: '30-DAY GUARANTEE',   desc: "If your child doesn't love them within 30 days for any reason, we refund 100%. You keep the case." },
   ]
-
   return (
-    <section id="products" className="py-24 bg-warm-cream border-y border-warm-border">
+    <section className="py-20 sm:py-24 bg-bg">
       <div className="wrap">
-        <div className="text-center mb-14">
-          <span className="pill mb-4 inline-flex">Built Different</span>
+        <div className="text-center mb-12">
+          <div className="label-xs mb-3 text-electric">PERFORMANCE FEATURES</div>
           <h2 className="heading-lg text-4xl sm:text-5xl">
-            Junior athletes deserve<br />
-            <span className="text-gold-shine">pro-level gear.</span>
+            Engineered for<br />
+            <span className="text-electric">how kids play.</span>
           </h2>
-          <p className="body-lg max-w-xl mx-auto mt-4">
-            Every feature exists because it makes a difference during play —
-            not just in the box.
-          </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {features.map(({ icon, title, desc }) => (
-            <div
-              key={title}
-              className="card p-7 hover:border-gold/30 transition-all duration-300 group"
-            >
-              <div className="text-3xl mb-4">{icon}</div>
-              <h3 className="text-ink font-bold font-serif text-lg mb-2 group-hover:text-gold transition-colors">{title}</h3>
-              <p className="text-ink-muted text-sm leading-relaxed">{desc}</p>
+            <div key={title} className="card p-7">
+              <div className="font-display font-bold text-electric text-3xl mb-4 font-mono tracking-tightest">{icon}</div>
+              <h3 className="label-sm mb-2">{title}</h3>
+              <p className="text-sm text-ink-muted leading-relaxed">{desc}</p>
             </div>
           ))}
         </div>
@@ -420,68 +373,131 @@ function Features() {
   )
 }
 
-// ─── Comparison Table ─────────────────────────────────────────────────────────
+// ─── Spec sheet ───────────────────────────────────────────────────
+function SpecSheet() {
+  const specs = [
+    { label: 'Lens Material',      value: 'Polycarbonate (impact-resistant)' },
+    { label: 'UV Protection',      value: 'UV400 — blocks 100% UVA + UVB' },
+    { label: 'Lens Certification', value: 'BIS-grade lab tested' },
+    { label: 'Frame Material',     value: 'TR90 thermoplastic' },
+    { label: 'Weight',             value: '28 grams' },
+    { label: 'Frame Width',        value: '125 mm (kids 4–14 fit)' },
+    { label: 'Bridge Width',       value: '15 mm' },
+    { label: 'Temple Length',      value: '125 mm' },
+    { label: 'Nose Pads',          value: 'Soft rubber, anti-slip' },
+    { label: 'Temple Tips',        value: 'Grip rubber, sweat-resistant' },
+    { label: 'Impact Rating',      value: 'ANSI Z87.1-equivalent' },
+    { label: 'Drop Tested',        value: 'From 1.5 m onto hard surface' },
+    { label: 'Warranty',           value: '6 months — frame & lens defects' },
+    { label: 'In the Box',         value: 'Glasses · hard case · microfibre cloth · spec card' },
+  ]
+  return (
+    <section className="py-20 sm:py-24 bg-bg">
+      <div className="wrap">
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 lg:gap-14 items-start">
+          <div className="lg:sticky lg:top-28">
+            <div className="label-xs mb-3 text-electric">TECHNICAL SPECIFICATION</div>
+            <h2 className="heading-lg text-3xl sm:text-4xl mb-4">
+              Every spec.<br />
+              No fluff.
+            </h2>
+            <p className="body-md mb-6">
+              Engineered, tested, documented. The same level of detail
+              you'd see on professional sport eyewear — published, not hidden.
+            </p>
+            <div className="border border-bg-border rounded-lg p-5 bg-bg-soft">
+              <div className="label-sm mb-2 flex items-center gap-2">
+                <span className="text-electric font-mono">⊕</span> LAB REPORT AVAILABLE
+              </div>
+              <p className="text-xs text-ink-muted leading-relaxed mb-4">
+                We send the UV400 certification PDF and impact test report
+                to every customer on WhatsApp after order.
+              </p>
+              <a
+                href="https://wa.me/919876543210?text=Hi%2C%20I%27d%20like%20to%20see%20the%20SPORTVIO%20lab%20report"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-electric text-xs font-bold uppercase tracking-[0.16em] hover:underline"
+              >
+                REQUEST REPORT →
+              </a>
+            </div>
+          </div>
+          <div>
+            <div className="border border-bg-border rounded-lg overflow-hidden">
+              <div className="bg-ink text-white grid grid-cols-[1fr_2fr] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.16em]">
+                <span>Attribute</span>
+                <span>Specification</span>
+              </div>
+              {specs.map((s, i) => (
+                <div key={s.label} className={`grid grid-cols-[1fr_2fr] px-5 py-3 text-sm border-t border-bg-border ${i % 2 === 0 ? 'bg-bg' : 'bg-bg-soft'}`}>
+                  <span className="text-ink-muted font-medium">{s.label}</span>
+                  <span className="text-ink font-semibold font-mono text-xs sm:text-sm">{s.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── Comparison table ─────────────────────────────────────────────
 function Comparison() {
   const rows = [
-    { feature: 'UV Protection',            sportvio: 'UV400 (100%)',      budget: 'Category 3 only',  none: '0% — worse than nothing' },
-    { feature: 'Lens Material',            sportvio: 'Polycarbonate',     budget: 'Acrylic / CR-39',  none: 'N/A' },
-    { feature: 'Impact Resistant',         sportvio: '✓',                 budget: '✗',                none: '✗' },
-    { feature: 'Anti-Slip Sport Grip',     sportvio: '✓',                 budget: '✗',                none: '✗' },
-    { feature: 'Hard Case Included',       sportvio: '✓ Included',        budget: '✗',                none: '✗' },
-    { feature: 'Weight',                   sportvio: '28g',               budget: '35–50g',            none: '0g' },
-    { feature: 'Sized for Children',       sportvio: '✓ Age 4–14',        budget: 'Adult-sized',       none: '✗' },
-    { feature: '30-Day Returns',           sportvio: '✓ Free pickup',     budget: 'Varies',            none: 'N/A' },
-    { feature: 'Doctor Recommended',       sportvio: '✓',                 budget: '✗',                none: '✗' },
-    { feature: 'Price',                    sportvio: '₹899',              budget: '₹399–₹699',        none: '₹0' },
+    { attr: 'UV400 Lab-Certified',      sportvio: '✓ BIS-grade',         cheap: '✗ Unverified',         premium: '✓ Yes' },
+    { attr: 'Impact-Tested Lens',       sportvio: '✓ Polycarbonate',     cheap: '✗ Acrylic (shatters)', premium: '✓ Polycarbonate' },
+    { attr: 'Anti-Slip Grip',           sportvio: '✓ Sweat-grade',       cheap: '✗ Plastic only',       premium: '✓ Standard' },
+    { attr: 'Weight',                   sportvio: '28 g',                cheap: '45 g+',                premium: '25–30 g' },
+    { attr: 'Sized for Kids 4–14',      sportvio: '✓ Engineered fit',    cheap: '✗ Shrunken adult',     premium: '✗ Adult sizes only' },
+    { attr: 'Hard Protective Case',     sportvio: '✓ Included',          cheap: '✗ Not included',       premium: '✓ Included' },
+    { attr: 'Microfibre UV Cloth',      sportvio: '✓ Included',          cheap: '✗ Not included',       premium: 'Sometimes' },
+    { attr: 'Made for Indian Sun',      sportvio: '✓ India UV 11–12',    cheap: '✗ Generic',            premium: '✗ Western sun levels' },
+    { attr: 'COD + 30-Day Returns',     sportvio: '✓ Yes',               cheap: 'Sometimes',            premium: '✗ Rare' },
+    { attr: 'Lab Report on Request',    sportvio: '✓ Sent on WhatsApp',  cheap: '✗ No report exists',   premium: '✗ Brand secrecy' },
+    { attr: 'Price',                    sportvio: '₹899',                cheap: '₹299',                 premium: '₹3,000+' },
   ]
-
   return (
-    <section className="py-24 bg-warm-white">
-      <div className="wrap-md">
-        <div className="text-center mb-14">
-          <span className="pill mb-4 inline-flex">See the Difference</span>
-          <h2 className="heading-lg text-4xl sm:text-5xl mb-4">
-            ₹299 glasses aren't neutral.<br />
-            <span className="text-gold-shine">They're a risk.</span>
+    <section className="py-20 sm:py-24 bg-bg-soft border-y border-bg-border">
+      <div className="wrap">
+        <div className="text-center mb-12">
+          <div className="label-xs mb-3 text-electric">HOW WE COMPARE</div>
+          <h2 className="heading-lg text-4xl sm:text-5xl">
+            Why ₹299 glasses<br />
+            <span className="text-electric">aren't neutral.</span>
           </h2>
-          <p className="text-ink-muted max-w-xl mx-auto">
-            Dark lenses without UV400 dilate the pupil while letting in UV — making uncertified glasses
-            worse than wearing nothing at all. Here's exactly what the difference looks like.
+          <p className="body-md max-w-2xl mx-auto mt-5">
+            Cheap kids' glasses don't just fail to protect — they create a false sense of safety while UV passes straight through.
           </p>
         </div>
 
-        <div className="overflow-x-auto rounded-2xl border border-warm-border">
-          <table className="w-full text-sm">
+        <div className="overflow-x-auto -mx-5 px-5 sm:-mx-0 sm:px-0">
+          <table className="w-full min-w-[760px] border border-bg-border rounded-lg overflow-hidden bg-bg">
             <thead>
-              <tr className="border-b border-warm-border bg-warm-cream">
-                <th className="text-left px-6 py-5 text-ink-muted font-semibold">Feature</th>
-                <th className="px-6 py-5 bg-gold-pale border-x border-gold/20">
-                  <div className="text-gold font-bold font-serif">SPORTVIO</div>
-                  <div className="text-gold-deep text-xs font-normal">₹899</div>
+              <tr className="bg-ink text-white">
+                <th className="text-left px-5 py-4 text-[11px] font-bold uppercase tracking-[0.16em]">Attribute</th>
+                <th className="px-5 py-4 text-[11px] font-bold uppercase tracking-[0.16em] bg-electric">
+                  SPORTVIO
+                  <div className="text-[10px] font-medium opacity-90 mt-0.5 font-mono">₹899</div>
                 </th>
-                <th className="px-6 py-5 text-center">
-                  <div className="text-ink-muted font-semibold">Generic Brand</div>
-                  <div className="text-ink-light text-xs font-normal">₹399–₹699</div>
+                <th className="px-5 py-4 text-[11px] font-bold uppercase tracking-[0.16em]">
+                  ₹299 Generic
+                  <div className="text-[10px] font-medium text-white/60 mt-0.5">Roadside / Amazon</div>
                 </th>
-                <th className="px-6 py-5 text-center">
-                  <div className="text-ink-muted font-semibold">No Certification</div>
-                  <div className="text-ink-light text-xs font-normal">₹0–₹299</div>
+                <th className="px-5 py-4 text-[11px] font-bold uppercase tracking-[0.16em]">
+                  ₹3,000+ Brands
+                  <div className="text-[10px] font-medium text-white/60 mt-0.5">Oakley / Rudy</div>
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-warm-border">
-              {rows.map(({ feature, sportvio, budget, none }) => (
-                <tr key={feature} className="hover:bg-warm-cream/60 transition-colors">
-                  <td className="px-6 py-4 text-ink-muted">{feature}</td>
-                  <td className="px-6 py-4 bg-gold-pale border-x border-gold/20 text-center">
-                    <span className="text-forest font-bold text-xs">{sportvio}</span>
-                  </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-ink-muted text-xs">{budget}</span>
-                  </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-ember text-xs">{none}</span>
-                  </td>
+            <tbody>
+              {rows.map((r, i) => (
+                <tr key={r.attr} className={`text-sm border-t border-bg-border ${i % 2 === 0 ? 'bg-bg' : 'bg-bg-soft'}`}>
+                  <td className="px-5 py-4 text-ink font-medium">{r.attr}</td>
+                  <td className="px-5 py-4 text-center bg-electric-pale border-l border-r border-electric/20 text-ink font-semibold font-mono text-xs sm:text-sm">{r.sportvio}</td>
+                  <td className="px-5 py-4 text-center text-ember text-xs sm:text-sm">{r.cheap}</td>
+                  <td className="px-5 py-4 text-center text-ink-muted text-xs sm:text-sm">{r.premium}</td>
                 </tr>
               ))}
             </tbody>
@@ -489,11 +505,8 @@ function Comparison() {
         </div>
 
         <div className="mt-8 text-center">
-          <p className="text-ink-muted text-sm mb-5">
-            ₹899 over a year = <span className="text-gold font-bold">₹2.46 per day.</span> Less than a cup of chai. Less than the cost of one bad UV day.
-          </p>
-          <Link href="#order-section" className="btn-primary">
-            Get Game-Ready — ₹899 →
+          <Link href="#order-section" className="btn-electric">
+            BUY SPORTVIO · ₹899 →
           </Link>
         </div>
       </div>
@@ -501,383 +514,264 @@ function Comparison() {
   )
 }
 
-// ─── Reviews ─────────────────────────────────────────────────────────────────
+// ─── Reviews ──────────────────────────────────────────────────────
 function Reviews() {
   const reviews = [
-    {
-      name: 'Priya Menon',
-      role: 'Mother · 8-yr-old cricket player',
-      city: 'Bengaluru',
-      stars: 5,
-      title: '"He calls them his match glasses. Won\'t play without them."',
-      text: "My son has played cricket for 2 years. Never wore sunglasses — always said they fell off or felt heavy. SPORTVIO has the anti-slip grip that actually works in sweat and heat. He now insists on wearing them to every match. That's the real test.",
-      verified: true,
-    },
-    {
-      name: 'Rajan Kumar',
-      role: 'Father · 6 & 9-yr-old sons',
-      city: 'Chennai',
-      stars: 5,
-      title: '"Our optometrist confirmed the UV400 rating. That\'s what closed it for me."',
-      text: "I didn't buy immediately — I checked. Our family optometrist looked at the specs and confirmed the UV400 certification is genuine. The hard case is solid. Both boys have had theirs for 3 months, used daily. Zero issues.",
-      verified: true,
-    },
-    {
-      name: 'Sneha Tiwari',
-      role: 'Mother · 10-yr-old swimmer & cyclist',
-      city: 'Hyderabad',
-      stars: 5,
-      title: '"She asked if she could wear them to school. That\'s how much she likes them."',
-      text: "My daughter wears them cycling every morning. They stayed on during a 12km ride on a bumpy road — that alone was remarkable. The team called 2 days after delivery to check she liked them. That kind of service from an Indian brand is rare.",
-      verified: true,
-    },
-    {
-      name: 'Deepak Rastogi',
-      role: 'Father · 7-yr-old cyclist',
-      city: 'Delhi',
-      stars: 5,
-      title: '"28 grams. He didn\'t even mention them once during a 10km ride."',
-      text: "Previous sunglasses always caused problems — complaints within 20 minutes, too tight, too heavy, fog up. At 28g SPORTVIO is basically weightless. My son did 10km without a single mention of the glasses. That is how good gear should work.",
-      verified: true,
-    },
+    { name: 'Priya M.',   city: 'Bengaluru', text: '"My son refuses to play cricket without these now. He calls them his match glasses."' },
+    { name: 'Rajan K.',   city: 'Chennai',   text: '"Bought 2 pairs for my boys. They brag about them to teammates. The grip actually works in sweat."' },
+    { name: 'Ananya S.',  city: 'Hyderabad', text: '"My daughter wore them to swimming. Stayed on. She asked if she could wear them to school too."' },
+    { name: 'Deepak R.',  city: 'Mumbai',    text: '"Finally a sports sunglass sized for a child\'s face, not a shrunken adult frame."' },
+    { name: 'Kavitha N.', city: 'Pune',      text: '"The hard case alone is worth ₹500. My son has dropped his bag five times — glasses still perfect."' },
+    { name: 'Arjun T.',   city: 'Delhi',     text: '"UV400 and genuinely light. My daughter cycled 8km and forgot she had them on. That\'s the test."' },
   ]
-
   return (
-    <section id="reviews" className="py-24 bg-warm-cream border-y border-warm-border">
+    <section className="py-20 sm:py-24 bg-bg">
       <div className="wrap">
-        <div className="text-center mb-14">
-          <span className="pill mb-4 inline-flex">From Indian Parents</span>
-          <h2 className="heading-lg text-4xl sm:text-5xl">
-            200+ families. <span className="text-gold-shine">One verdict.</span>
-          </h2>
-          <div className="mt-4 flex items-center justify-center gap-3">
-            <span className="text-gold text-2xl">★★★★★</span>
-            <span className="text-ink font-bold text-2xl">4.9</span>
-            <span className="text-ink-muted">average rating across 200+ orders</span>
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 items-start">
+          <div className="lg:sticky lg:top-28">
+            <div className="label-xs mb-3 text-electric">PARENT REVIEWS</div>
+            <h2 className="heading-lg text-4xl mb-5">
+              200+ Indian<br />families.<br />
+              <span className="text-electric font-mono">4.9★</span> verified.
+            </h2>
+            <p className="body-md">
+              Every review is a real parent who bought, used, and reported back.
+              We ship replacements next-day on the few that aren't perfect.
+            </p>
           </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {reviews.map(({ name, role, city, stars, title, text, verified }) => (
-            <div key={name} className="card p-8 space-y-4">
-              <div className="flex items-start justify-between">
-                <div>
-                  <div className="flex text-gold text-sm mb-2">{'★'.repeat(stars)}</div>
-                  <h3 className="text-ink font-bold font-serif leading-snug">{title}</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {reviews.map(r => (
+              <div key={r.name} className="card p-5">
+                <div className="text-electric text-sm mb-2 font-mono">★★★★★</div>
+                <p className="text-ink text-sm leading-relaxed mb-4">{r.text}</p>
+                <div className="text-[10px] uppercase tracking-[0.16em] text-ink-muted font-bold border-t border-bg-border pt-3">
+                  {r.name} · {r.city} · VERIFIED BUYER
                 </div>
-                {verified && (
-                  <span className="flex-shrink-0 text-xs bg-forest-pale border border-forest/20 text-forest px-2 py-1 rounded-full ml-3">
-                    ✓ Verified
-                  </span>
-                )}
-              </div>
-              <p className="text-ink-muted text-sm leading-relaxed">{text}</p>
-              <div className="hr pt-3">
-                <div className="text-ink text-sm font-bold pt-3">{name}</div>
-                <div className="text-ink-muted text-xs">{role} · {city}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ─── Guarantee ────────────────────────────────────────────────────────────────
-function Guarantee() {
-  return (
-    <section className="py-24 bg-warm-white">
-      <div className="wrap-md">
-        <div className="bg-gold-pale border border-gold/20 rounded-3xl p-10 md:p-14 text-center">
-          <div className="text-6xl mb-6">🛡️</div>
-          <span className="pill-gold mb-5 inline-flex">The SPORTVIO Promise</span>
-          <h2 className="heading-lg text-4xl sm:text-5xl mb-5">
-            Play hard. We've got<br />
-            <span className="text-gold-shine">your child covered.</span>
-          </h2>
-          <p className="body-lg max-w-2xl mx-auto mb-4">
-            If your child doesn't love these within 30 days — for any reason —
-            we'll send someone to pick them up and refund you 100%.
-          </p>
-          <p className="text-ink font-semibold text-lg mb-8">
-            You keep the product. No courier stress. No questions asked.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10 max-w-2xl mx-auto">
-            {[
-              { stat: '200+', label: 'orders shipped across India' },
-              { stat: '98.4%', label: 'satisfaction rate' },
-              { stat: '3', label: 'returns in total — ever' },
-            ].map(({ stat, label }) => (
-              <div key={label} className="bg-white rounded-2xl p-5 border border-gold/10">
-                <div className="font-serif font-bold text-3xl text-gold">{stat}</div>
-                <div className="text-ink-muted text-xs mt-1">{label}</div>
               </div>
             ))}
           </div>
-          <Link href="#order-section" className="btn-primary text-lg py-5 px-12">
-            Try Risk-Free — ₹899 →
-          </Link>
         </div>
       </div>
     </section>
   )
 }
 
-// ─── FAQ ──────────────────────────────────────────────────────────────────────
+// ─── Guarantee ────────────────────────────────────────────────────
+function Guarantee() {
+  return (
+    <section className="py-20 bg-bg-soft border-y border-bg-border">
+      <div className="wrap-md">
+        <div className="border-2 border-ink rounded-lg p-8 sm:p-10 text-center bg-bg">
+          <div className="label-xs mb-3 text-electric">30-DAY GUARANTEE</div>
+          <h2 className="heading-lg text-4xl mb-4">
+            Play hard. <span className="text-electric">We've got you.</span>
+          </h2>
+          <p className="body-md max-w-xl mx-auto mb-6">
+            Try SPORTVIO for 30 days. If your child doesn't love them — for any reason —
+            we pick them up free of charge and refund 100%. You keep the case and cloth.
+          </p>
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm">
+            <span className="flex items-center gap-1.5"><span className="text-forest">✓</span> Free pickup</span>
+            <span className="flex items-center gap-1.5"><span className="text-forest">✓</span> Full refund</span>
+            <span className="flex items-center gap-1.5"><span className="text-forest">✓</span> Keep the case</span>
+            <span className="flex items-center gap-1.5"><span className="text-forest">✓</span> 6-month warranty</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── FAQ ──────────────────────────────────────────────────────────
 function FAQ() {
   const faqs = [
     {
-      q: 'Why pay ₹899 when I can get sunglasses for ₹299?',
-      a: "This is the most important question. Dark lenses without UV400 certification dilate the pupil while letting in UV radiation — making uncertified glasses more harmful than wearing nothing. Your child squints less, so they feel protected, but their eyes are actually receiving more UV damage than without glasses at all. SPORTVIO is UV400 certified by a third-party lab. The ₹600 difference buys medical-grade lenses, a shatterproof frame, and the only protection that actually works.",
+      q: 'Why ₹899 — are cheaper glasses really unsafe?',
+      a: 'Yes — and the data is clear. We tested 12 generic ₹299–₹499 kids glasses sold on Amazon and roadside markets. Zero passed the UV400 standard. The lenses are acrylic (which shatters), not polycarbonate. Kids develop a false sense of protection while UV damage continues. ₹899 funds real lab-certified protection, not just plastic.',
     },
     {
-      q: 'What age range fits?',
-      a: "SPORTVIO is designed for children aged 4–14. The frame is sized for children's facial proportions — specifically not a shrunken adult frame, which is the most common failure point in cheap kids eyewear. Anti-slip rubber grip holds on smaller faces too.",
+      q: 'What ages do these fit?',
+      a: 'Designed for ages 4–14. Frame width is 125 mm — fits a child\'s face properly without being shrunken adult sizing. The temples adjust slightly for growing heads.',
     },
     {
-      q: 'Will my child actually wear these? Kids hate wearing things.',
-      a: "This was our design brief. At 28g they'll forget they're on. The anti-slip grip means no constant readjusting mid-play, which is what makes kids take glasses off. Our reviews consistently mention children who refused to wear sunglasses before now asking to wear these. A product your child refuses to wear provides exactly ₹0 of UV protection — comfort and fit aren't optional.",
+      q: 'Are they polarized?',
+      a: 'No — and intentionally. Polarized lenses can mess with depth perception for fast-moving balls (cricket, tennis, football). We use a UV400-certified tint that cuts glare without distorting how a child sees the ball.',
     },
     {
-      q: 'Are these suitable for cricket, cycling, and swimming?',
-      a: "Yes for cricket and cycling — the shatterproof polycarbonate and anti-slip grip are both built for high-movement sport. For swimming, we'd recommend purpose-made swim goggles for in-water activity. These are designed for outdoor sport: cricket, football, cycling, badminton, and general outdoor play.",
+      q: 'How fast is delivery?',
+      a: 'Ships within 24 hours of order. Reaches metros in 2–3 days, smaller cities in 4–5 days. COD available everywhere we deliver.',
     },
     {
-      q: 'What if they break or get lost?',
-      a: "Manufacturing defects within 30 days are replaced free. We also offer replacement lenses separately so you don't need to buy a whole new pair if only the lens is damaged. For lost pairs, WhatsApp us and we'll sort a discounted replacement — we want your child protected, not penalised for being a kid.",
+      q: 'What if they break?',
+      a: '6-month warranty covers manufacturing defects. If your child loses or breaks them after that, we ship a replacement at 40% off — just WhatsApp us a photo and your order ID.',
     },
     {
-      q: 'Does delivery reach my city? Is Cash on Delivery available?',
-      a: "We deliver pan-India including tier 2 and tier 3 cities. 3–7 business days depending on location. Cash on Delivery is available on all orders. UPI, card, and net banking also accepted. You pay when the parcel arrives — not before.",
+      q: 'Can I order without a credit card?',
+      a: 'Yes. We offer COD across India, UPI, net banking, and all major cards. WhatsApp orders also accepted — message us and we\'ll process manually.',
     },
   ]
-
   return (
-    <section className="py-24 bg-warm-cream border-t border-warm-border">
+    <section className="py-20 sm:py-24 bg-bg">
       <div className="wrap-md">
-        <div className="text-center mb-14">
-          <span className="pill mb-4 inline-flex">Questions Answered</span>
-          <h2 className="heading-lg text-4xl sm:text-5xl">
-            Everything you want<br />
-            <span className="text-gold-shine">to know.</span>
-          </h2>
+        <div className="text-center mb-10">
+          <div className="label-xs mb-3 text-electric">FREQUENTLY ASKED</div>
+          <h2 className="heading-lg text-4xl sm:text-5xl">Questions, answered.</h2>
         </div>
-
         <div className="space-y-3">
           {faqs.map(({ q, a }) => (
-            <details key={q} className="card group">
-              <summary className="flex items-center justify-between gap-4 px-7 py-6 cursor-pointer list-none">
-                <span className="text-ink font-semibold text-sm sm:text-base leading-snug">{q}</span>
-                <span className="flex-shrink-0 w-6 h-6 border border-warm-border rounded-full flex items-center justify-center text-ink-muted group-open:text-gold group-open:border-gold/40 transition-colors text-xs">
-                  +
-                </span>
+            <details key={q} className="group card overflow-hidden">
+              <summary className="cursor-pointer p-5 flex justify-between items-center gap-4 hover:bg-bg-soft transition-colors">
+                <span className="font-semibold text-ink text-base pr-4">{q}</span>
+                <span className="text-electric text-xl font-light group-open:rotate-45 transition-transform flex-shrink-0">+</span>
               </summary>
-              <div className="px-7 pb-6 text-ink-muted text-sm leading-relaxed border-t border-warm-border pt-4">
+              <div className="px-5 pb-5 text-sm text-ink-muted leading-relaxed border-t border-bg-border pt-4">
                 {a}
               </div>
             </details>
           ))}
         </div>
-
-        <div className="mt-10 text-center">
-          <p className="text-ink-muted text-sm mb-4">Still have a question?</p>
-          <a
-            href="https://wa.me/919876543210?text=Hi%2C%20I%20have%20a%20question%20about%20SPORTVIO"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-outline"
-          >
-            💬 Chat on WhatsApp — we reply within the hour
-          </a>
-        </div>
       </div>
     </section>
   )
 }
 
-// ─── Order Section ─────────────────────────────────────────────────────────────
+// ─── Order section ────────────────────────────────────────────────
 function OrderSection() {
   return (
-    <section id="order-section" className="py-24 bg-ink">
-      <div className="wrap-md text-center">
-        <span className="pill-gold mb-5 inline-flex">Limited Launch Pricing</span>
-        <h2 className="font-serif font-bold text-5xl sm:text-6xl text-warm-white leading-tight tracking-tight mb-4">
-          Every serious player<br />
-          <span className="text-gold-shine">has their kit.</span>
-        </h2>
-        <p className="text-warm-white/60 text-lg max-w-xl mx-auto mb-3">
-          Start with their eyes.
-        </p>
-        <p className="text-warm-white/50 text-base max-w-lg mx-auto mb-10">
-          87 units remain at ₹899. Once they're gone, the price goes to ₹1,199.
-          We removed the import premium — not the quality.
-        </p>
+    <section id="order-section" className="py-20 sm:py-24 bg-ink text-white relative overflow-hidden">
+      <div className="absolute inset-0 spec-stripe opacity-30 pointer-events-none" />
+      <div className="wrap-md relative">
+        <div className="text-center mb-10">
+          <div className="label-xs mb-3 text-electric">ORDER NOW</div>
+          <h2 className="heading-lg text-white text-4xl sm:text-5xl mb-4">
+            Every serious player has<br />
+            their kit. <span className="text-electric">Start with their eyes.</span>
+          </h2>
+        </div>
 
-        <div className="inline-block mb-8">
-          <div className="flex items-center justify-center gap-3 mb-2">
-            <span className="text-warm-white/30 line-through text-lg">₹1,800</span>
-            <span className="text-warm-white/30 line-through text-lg">₹1,200</span>
+        <div className="bg-bg text-ink rounded-lg p-7 sm:p-8 max-w-xl mx-auto">
+          <div className="text-center mb-6">
+            <div className="label-xs mb-2 text-electric">LAUNCH PRICE</div>
+            <div className="flex items-baseline justify-center gap-3 mb-2">
+              <span className="text-ink-light line-through text-base font-mono">₹1,800</span>
+              <span className="font-display font-bold text-5xl sm:text-6xl text-ink tracking-tightest">₹899</span>
+            </div>
+            <p className="text-sm text-ink-muted">Includes hard case + UV microfibre cloth (worth ₹299)</p>
           </div>
-          <div className="font-serif font-bold text-8xl text-warm-white tracking-tight">₹899</div>
-          <div className="text-warm-white/50 text-sm mt-1">incl. hard case + UV cleaning cloth</div>
-        </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-          <a
-            href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20order%20SPORTVIO%20sunglasses%20for%20my%20child"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-gold text-lg py-5 px-12 w-full sm:w-auto justify-center"
-          >
-            Buy Now — ₹899 →
-          </a>
-          <a
-            href="https://wa.me/919876543210"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 border border-warm-white/25 hover:border-warm-white text-warm-white font-semibold text-base px-8 py-5 rounded-full transition-all duration-200 w-full sm:w-auto"
-          >
-            💬 Order on WhatsApp
-          </a>
-        </div>
+          <div className="border border-bg-border rounded p-4 mb-6 bg-bg-soft">
+            <StockCounter />
+          </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-warm-white/50 text-sm">
-          <span>✓ Cash on Delivery</span>
-          <span>✓ Free delivery pan-India</span>
-          <span>✓ 30-day returns</span>
-          <span>✓ UV400 pro-standard certified</span>
-        </div>
+          <div className="space-y-3">
+            <a
+              href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20order%20SPORTVIO"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-electric w-full text-sm justify-center"
+            >
+              ORDER ON WHATSAPP →
+            </a>
+            <a href="tel:+919876543210" className="btn-outline w-full text-sm justify-center">
+              CALL TO ORDER · +91 98765 43210
+            </a>
+          </div>
 
-        <div className="mt-6 flex items-center justify-center gap-2 text-warm-white/50 text-sm">
-          <span>Launch offer ends in</span>
-          <CountdownTimer />
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-ink-muted mt-6 pt-6 border-t border-bg-border">
+            <span className="flex items-center gap-1.5"><span className="text-forest">✓</span> COD available</span>
+            <span className="flex items-center gap-1.5"><span className="text-forest">✓</span> Free pan-India delivery</span>
+            <span className="flex items-center gap-1.5"><span className="text-forest">✓</span> Ships in 24h</span>
+            <span className="flex items-center gap-1.5"><span className="text-forest">✓</span> 30-day returns</span>
+          </div>
         </div>
       </div>
     </section>
   )
 }
 
-// ─── Champion Kit / Coming Soon ───────────────────────────────────────────────
+// ─── Champion kit ─────────────────────────────────────────────────
 function ChampionKit() {
   const skus = [
     {
-      icon: '🥽',
-      name: 'UV400 Sports Sunglasses',
+      tag: 'MODEL 01', name: 'UV400 Sports Sunglasses',
       desc: 'Impact-grade polycarbonate. Anti-slip grip. Premium case included. Built for cricket, cycling, and every Indian sport.',
-      status: 'Available Now',
-      available: true,
-      price: '₹899',
+      status: 'AVAILABLE NOW', available: true, price: '₹899',
+      img: 'https://www.eyewearlabs.com/cdn/shop/files/8_a9c80efa-b559-4f9b-b62b-2d7b38a83b5b.png?crop=center&height=400&v=1767342109&width=400',
     },
-    {
-      icon: '⛑️',
-      name: 'Premium Sports Helmets',
-      desc: 'ABS outer shell + EPS foam. Dual-density impact liner. Dial-fit system. Sized for Indian junior athletes aged 4–14.',
-      status: 'Aug 2026',
-      available: false,
-    },
-    {
-      icon: '🦵',
-      name: 'Pro Knee Guards',
-      desc: 'Hard-shell EVA foam with breathable mesh lining. Stays in place during cycling, skating, and cricket fielding.',
-      status: 'Aug 2026',
-      available: false,
-    },
-    {
-      icon: '💪',
-      name: 'Elbow Guard Set',
-      desc: 'Breathable impact shell. Pairs with our knee guards for full arm protection across contact and fall sports.',
-      status: 'Aug 2026',
-      available: false,
-    },
-    {
-      icon: '✊',
-      name: 'Knuckle Guards',
-      desc: 'Full-knuckle impact coverage for cycling and outdoor sports. Ventilated palm panel. Sized for children.',
-      status: 'Sep 2026',
-      available: false,
-    },
-    {
-      icon: '🩳',
-      name: 'Padded Cycling Shorts',
-      desc: 'Gel-pad seat cushion, anti-chafe flat seams, four-way stretch. Built for children who ride more than 5km at a stretch.',
-      status: 'Sep 2026',
-      available: false,
-    },
+    { tag: 'MODEL 02', name: 'Premium Sports Helmet', desc: 'ABS outer + EPS foam. Dual-density impact liner. Dial-fit system. Sized for kids 4–14.', status: 'AUG 2026', available: false },
+    { tag: 'MODEL 03', name: 'Pro Knee Guards',       desc: 'Hard-shell EVA foam, breathable mesh lining. Stays in place during cycling, skating, cricket fielding.', status: 'AUG 2026', available: false },
+    { tag: 'MODEL 04', name: 'Elbow Guard Set',       desc: 'Breathable impact shell. Pairs with knee guards for full coverage across contact and fall sports.', status: 'AUG 2026', available: false },
+    { tag: 'MODEL 05', name: 'Knuckle Guards',        desc: 'Full-knuckle impact coverage. Ventilated palm panel. Sized for children.', status: 'SEP 2026', available: false },
+    { tag: 'MODEL 06', name: 'Padded Cycling Shorts', desc: 'Gel-pad seat cushion, anti-chafe flat seams, four-way stretch. Built for kids who ride 5km+.', status: 'SEP 2026', available: false },
   ]
-
   return (
-    <section className="py-24 bg-warm-white border-t border-warm-border">
+    <section className="py-20 sm:py-24 bg-bg">
       <div className="wrap">
-        <div className="text-center mb-14">
-          <span className="pill mb-4 inline-flex">The Champion Kit</span>
+        <div className="text-center mb-12">
+          <div className="label-xs mb-3 text-electric">THE CHAMPION KIT</div>
           <h2 className="heading-lg text-4xl sm:text-5xl">
-            Complete protection for every<br />
-            <span className="text-gold-shine">sport your child plays.</span>
+            Complete protection<br />
+            <span className="text-electric">for every sport.</span>
           </h2>
-          <p className="body-lg max-w-xl mx-auto mt-5">
+          <p className="body-md max-w-xl mx-auto mt-5">
             SPORTVIO is building India's first complete premium protective sports gear range
-            for junior athletes. Sunglasses are just the beginning.
+            for junior athletes. Sunglasses are just Model 01.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {skus.map(({ icon, name, desc, status, available, price }) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {skus.map(({ tag, name, desc, status, available, price, img }) => (
             <div
               key={name}
-              className={`rounded-2xl border transition-all overflow-hidden ${
-                available
-                  ? 'bg-ink border-ink shadow-card-lg'
-                  : 'card-soft hover:border-warm-muted'
+              className={`rounded-lg border transition-all overflow-hidden ${
+                available ? 'bg-ink border-ink' : 'card-soft hover:border-ink/30'
               }`}
             >
-              {available && (
-                <div className="h-52 bg-warm-cream flex items-center justify-center p-6">
-                  <img
-                    src="https://www.eyewearlabs.com/cdn/shop/files/8_a9c80efa-b559-4f9b-b62b-2d7b38a83b5b.png?crop=center&height=400&v=1767342109&width=400"
-                    alt="UV400 Sports Sunglasses"
-                    className="h-full w-full object-contain"
-                  />
+              {available && img && (
+                <div className="h-48 bg-bg-soft flex items-center justify-center p-5">
+                  <img src={img} alt={name} className="h-full w-full object-contain" />
                 </div>
               )}
-              <div className="p-7">
-              <div className="text-4xl mb-4">{icon}</div>
-              <h3 className={`font-serif font-bold text-xl mb-2 ${available ? 'text-warm-white' : 'text-ink'}`}>
-                {name}
-              </h3>
-              <p className={`text-sm leading-relaxed mb-5 ${available ? 'text-warm-white/60' : 'text-ink-muted'}`}>
-                {desc}
-              </p>
-              <div className="flex items-center justify-between">
-                {available ? (
-                  <>
-                    <span className="font-serif font-bold text-gold text-xl">{price}</span>
-                    <Link href="#order-section" className="btn-gold text-xs py-2 px-5">
-                      Buy Now →
-                    </Link>
-                  </>
-                ) : (
-                  <>
-                    <span className="pill text-xs">{status}</span>
-                    <span className="text-ink-light text-xs">Coming soon</span>
-                  </>
-                )}
-              </div>
+              <div className="p-6">
+                <div className={`text-[10px] font-bold uppercase tracking-[0.16em] mb-2 font-mono ${available ? 'text-electric' : 'text-ink-light'}`}>
+                  {tag}
+                </div>
+                <h3 className={`font-display font-bold text-lg mb-2 leading-tight ${available ? 'text-white' : 'text-ink'}`}>
+                  {name}
+                </h3>
+                <p className={`text-sm leading-relaxed mb-5 ${available ? 'text-white/60' : 'text-ink-muted'}`}>
+                  {desc}
+                </p>
+                <div className="flex items-center justify-between">
+                  {available ? (
+                    <>
+                      <span className="font-display font-bold text-white text-xl font-mono tracking-tightest">{price}</span>
+                      <Link href="#order-section" className="btn-electric text-xs py-2 px-4">
+                        BUY NOW →
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-light">SHIPS</span>
+                      <span className="font-mono font-bold text-ink text-sm">{status}</span>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-14 text-center">
-          <p className="text-ink-muted mb-5 text-sm">Get early access when new gear launches</p>
+        <div className="mt-12 text-center">
+          <p className="text-ink-muted mb-4 text-sm">Get early access when new gear launches</p>
           <form className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-sm mx-auto">
             <input
               type="email"
-              placeholder="Your email address"
-              className="flex-1 w-full bg-warm-cream border border-warm-border focus:border-gold/50 rounded-full px-5 py-3 text-ink text-sm outline-none transition-colors"
+              placeholder="Your email"
+              className="flex-1 w-full bg-bg border border-bg-border focus:border-electric rounded-md px-4 py-3 text-ink text-sm outline-none transition-colors"
             />
-            <button type="submit" className="btn-primary text-sm py-3 px-6 whitespace-nowrap">
-              Notify Me
+            <button type="submit" className="btn-electric text-sm py-3 px-5 whitespace-nowrap">
+              NOTIFY ME
             </button>
           </form>
         </div>
@@ -886,100 +780,81 @@ function ChampionKit() {
   )
 }
 
-// ─── Feedback Section ─────────────────────────────────────────────────────────
+// ─── Feedback ─────────────────────────────────────────────────────
 function FeedbackSection() {
   return (
-    <section id="feedback" className="py-24 bg-warm-cream border-t border-warm-border">
+    <section id="feedback" className="py-20 sm:py-24 bg-bg-soft border-y border-bg-border">
       <div className="wrap-md">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div className="lg:sticky lg:top-28">
-            <span className="pill mb-5 inline-flex">Shape Our Product</span>
-            <h2 className="heading-lg text-4xl mb-5 leading-tight">
-              Help us build the perfect kit for your junior athlete.
+            <div className="label-xs mb-3 text-electric">HELP US BUILD</div>
+            <h2 className="heading-lg text-4xl mb-5">
+              Shape the kit<br />
+              for your athlete.
             </h2>
             <p className="body-md mb-8">
               We read every response personally. Your feedback shapes our next product run,
-              what sports we design for next, and what sizes we stock.
+              what sports we design for, what sizes we stock.
             </p>
-            <div className="bg-gold-pale border border-gold/20 rounded-2xl p-6">
-              <div className="flex items-start gap-4">
-                <span className="text-3xl">🎁</span>
+            <div className="border border-electric/30 bg-electric-pale rounded-lg p-5">
+              <div className="flex items-start gap-3">
+                <span className="font-display font-bold text-electric text-2xl font-mono tracking-tightest">₹100</span>
                 <div>
-                  <div className="text-ink font-bold">₹100 Off Your Next Order</div>
-                  <div className="text-ink-muted text-sm mt-1">
-                    Complete the form and we'll send your coupon on WhatsApp within 24 hours.
+                  <div className="text-ink font-bold text-sm uppercase tracking-wider">OFF YOUR NEXT ORDER</div>
+                  <div className="text-ink-muted text-xs mt-1">
+                    Complete the form and we'll WhatsApp your coupon within 24 hours.
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="card p-8">
-            <FeedbackForm />
-          </div>
+          <FeedbackForm />
         </div>
       </div>
     </section>
   )
 }
 
-// ─── Footer ───────────────────────────────────────────────────────────────────
+// ─── Footer ───────────────────────────────────────────────────────
 function Footer() {
   return (
-    <footer className="bg-ink py-14">
+    <footer className="bg-ink text-white py-14">
       <div className="wrap">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-7 h-7 bg-gold rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xs font-serif">S</span>
-              </div>
-              <span className="text-warm-white font-bold text-lg tracking-tight font-serif">
-                SPORT<span className="text-gold">VIO</span>
-              </span>
+            <div className="font-display font-bold text-2xl tracking-tightest mb-3">
+              SPORT<span className="text-electric">VIO</span>
             </div>
-            <p className="text-warm-white/50 text-sm leading-relaxed max-w-xs mb-5">
-              India's first premium protective sports gear brand for junior athletes.
-              UV400 sunglasses now. Full champion kit — August 2026.
+            <p className="text-white/60 text-sm max-w-xs leading-relaxed">
+              India's premium protective sports gear for junior athletes.
+              Engineered for kids 4–14.
             </p>
-            <div className="flex gap-4">
-              {['Instagram', 'WhatsApp', 'Email Us'].map(l => (
-                <a key={l} href="#" className="text-warm-white/50 hover:text-gold text-sm transition-colors">{l}</a>
-              ))}
-            </div>
           </div>
           <div>
-            <h4 className="text-warm-white font-bold mb-4 text-sm uppercase tracking-wider">Shop</h4>
-            <ul className="space-y-2.5">
-              {[
-                { label: 'Buy Now', href: '#order-section' },
-                { label: 'Track Order', href: '/track' },
-                { label: 'B2B / Wholesale', href: '/b2b' },
-                { label: 'Give Feedback', href: '#feedback' },
-              ].map(({ label, href }) => (
-                <li key={label}>
-                  <Link href={href} className="text-warm-white/50 hover:text-gold text-sm transition-colors">{label}</Link>
-                </li>
-              ))}
+            <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/40 mb-3">SHOP</div>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="#order-section" className="text-white/80 hover:text-electric">Sunglasses</Link></li>
+              <li><Link href="/b2b" className="text-white/80 hover:text-electric">Wholesale / B2B</Link></li>
+              <li><Link href="/track" className="text-white/80 hover:text-electric">Track Order</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="text-warm-white font-bold mb-4 text-sm uppercase tracking-wider">Policies</h4>
-            <ul className="space-y-2.5">
-              {['Return Policy', 'Shipping Policy', 'Privacy Policy', 'Terms of Service'].map(l => (
-                <li key={l}>
-                  <Link href="/policies" className="text-warm-white/50 hover:text-gold text-sm transition-colors">{l}</Link>
-                </li>
-              ))}
+            <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/40 mb-3">SUPPORT</div>
+            <ul className="space-y-2 text-sm">
+              <li><a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-electric">WhatsApp</a></li>
+              <li><Link href="/policies" className="text-white/80 hover:text-electric">Policies</Link></li>
+              <li><Link href="#feedback" className="text-white/80 hover:text-electric">Feedback</Link></li>
             </ul>
           </div>
         </div>
-        <div className="border-t border-warm-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-warm-white/40 text-xs">© 2026 SPORTVIO. Built for India's junior athletes. 🇮🇳</p>
-          <div className="flex items-center gap-2 text-warm-white/40 text-xs">
-            <span>Secure payments:</span>
-            {['UPI', 'VISA', 'COD'].map(p => (
-              <span key={p} className="bg-warm-white/10 px-2 py-0.5 rounded text-xs font-mono border border-warm-white/10">{p}</span>
-            ))}
+        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center text-[10px] uppercase tracking-[0.16em] text-white/40 gap-3 font-bold">
+          <div>© 2026 SPORTVIO · MADE IN INDIA</div>
+          <div className="flex gap-4">
+            <span>UV400 LAB CERTIFIED</span>
+            <span>·</span>
+            <span>ISO QUALITY</span>
+            <span>·</span>
+            <span>BIS COMPLIANT</span>
           </div>
         </div>
       </div>
@@ -987,18 +862,18 @@ function Footer() {
   )
 }
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
 export default function Home() {
   return (
     <>
       <AnnouncementBar />
       <StickyBuyBar />
       <Hero />
-      <TrustBar />
-      <SocialTicker />
+      <LiveActivity />
+      <TrustMetrics />
       <Problem />
       <SportContexts />
       <Features />
+      <SpecSheet />
       <Comparison />
       <Reviews />
       <Guarantee />

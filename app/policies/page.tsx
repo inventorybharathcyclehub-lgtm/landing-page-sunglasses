@@ -134,41 +134,44 @@ export default function PoliciesPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-slate-950 pt-28 pb-24">
-        <div className="section-container">
+      <main className="min-h-screen bg-bg pt-28 pb-20">
+        <div className="wrap-md">
           {/* Header */}
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight">
-              Our <span className="gradient-text">Policies</span>
+          <div className="text-center mb-14">
+            <div className="label-xs mb-3 text-electric">POLICIES</div>
+            <h1 className="heading-xl text-4xl sm:text-5xl mb-4">
+              Complete<br />
+              <span className="text-electric">transparency.</span>
             </h1>
-            <p className="mt-4 text-slate-400 text-lg">
-              We believe in complete transparency. Here's everything you need to know about how we operate.
+            <p className="body-md max-w-xl mx-auto">
+              Everything you need to know about how we operate.
             </p>
-            {/* Quick nav */}
-            <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
-              {policies.map(({ id, title, icon }) => (
-                <a key={id} href={`#${id}`} className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 hover:text-white px-4 py-2 rounded-full text-sm font-medium transition-all">
-                  {icon} {title.split(' ')[0]}
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-7">
+              {policies.map(({ id, title }) => (
+                <a
+                  key={id}
+                  href={`#${id}`}
+                  className="text-[10px] font-bold uppercase tracking-[0.16em] bg-bg-soft hover:bg-electric-pale border border-bg-border hover:border-electric/40 text-ink-muted hover:text-electric px-3 py-2 rounded transition-all"
+                >
+                  {title.split(' ')[0]}
                 </a>
               ))}
             </div>
           </div>
 
-          <div className="max-w-3xl mx-auto space-y-12">
-            {policies.map(({ id, title, icon, content }) => (
+          <div className="space-y-6">
+            {policies.map(({ id, title, content }) => (
               <section key={id} id={id} className="scroll-mt-24">
-                <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8">
-                  <div className="flex items-center gap-4 mb-8">
-                    <div className="w-12 h-12 bg-orange-500/20 border border-orange-500/30 rounded-2xl flex items-center justify-center text-2xl">
-                      {icon}
-                    </div>
-                    <h2 className="text-2xl font-black text-white">{title}</h2>
+                <div className="card p-7 sm:p-8">
+                  <div className="flex items-center gap-3 mb-6 pb-4 border-b border-bg-border">
+                    <span className="font-display font-bold text-electric text-xl font-mono">⊕</span>
+                    <h2 className="font-display font-bold text-ink text-xl uppercase tracking-tight">{title}</h2>
                   </div>
-                  <div className="space-y-6">
+                  <div className="space-y-5">
                     {content.map(({ heading, text }) => (
                       <div key={heading}>
-                        <h3 className="text-orange-400 font-bold text-sm uppercase tracking-wider mb-2">{heading}</h3>
-                        <p className="text-slate-300 leading-relaxed">{text}</p>
+                        <h3 className="label-sm text-electric mb-2">{heading}</h3>
+                        <p className="text-ink-muted text-sm leading-relaxed">{text}</p>
                       </div>
                     ))}
                   </div>
@@ -177,27 +180,27 @@ export default function PoliciesPage() {
             ))}
           </div>
 
-          <div className="text-center mt-16">
-            <p className="text-slate-400 mb-4">Have a question not covered here?</p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="text-center mt-12">
+            <p className="text-ink-muted text-sm mb-4">Have a question not covered here?</p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
                 href="https://wa.me/919876543210?text=Hi%2C%20I%20have%20a%20question%20about%20your%20policies"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary"
+                className="btn-electric text-sm"
               >
-                💬 WhatsApp Us
+                WHATSAPP US
               </a>
-              <Link href="/" className="text-slate-400 hover:text-white text-sm transition-colors">
-                ← Back to Home
+              <Link href="/" className="text-ink-muted hover:text-electric text-[10px] font-bold uppercase tracking-[0.16em] transition-colors">
+                ← BACK TO HOME
               </Link>
             </div>
           </div>
         </div>
       </main>
-      <footer className="bg-slate-950 border-t border-white/10 py-8">
-        <div className="section-container text-center">
-          <p className="text-slate-500 text-sm">© 2026 SPORTVIO. All rights reserved. Last updated: May 2026.</p>
+      <footer className="bg-bg-soft border-t border-bg-border py-8">
+        <div className="wrap text-center">
+          <p className="text-ink-light text-[10px] font-bold uppercase tracking-[0.16em]">© 2026 SPORTVIO · LAST UPDATED MAY 2026</p>
         </div>
       </footer>
     </>

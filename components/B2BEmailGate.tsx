@@ -2,6 +2,9 @@
 
 import { useState, useEffect } from 'react'
 
+const inputCls =
+  'w-full bg-bg border border-bg-border focus:border-electric rounded-md px-4 py-3.5 text-ink placeholder-ink-light outline-none transition-colors text-sm'
+
 export default function B2BEmailGate({ children }: { children: React.ReactNode }) {
   const [granted, setGranted] = useState<boolean | null>(null)
   const [email, setEmail]     = useState('')
@@ -35,8 +38,8 @@ export default function B2BEmailGate({ children }: { children: React.ReactNode }
 
   if (granted === null) {
     return (
-      <div className="min-h-screen bg-warm-white flex items-center justify-center">
-        <div className="w-6 h-6 border-2 border-gold/20 border-t-gold rounded-full animate-spin" />
+      <div className="min-h-screen bg-bg flex items-center justify-center">
+        <div className="w-6 h-6 border-2 border-electric/20 border-t-electric rounded-full animate-spin" />
       </div>
     )
   }
@@ -44,24 +47,25 @@ export default function B2BEmailGate({ children }: { children: React.ReactNode }
   if (granted) return <>{children}</>
 
   return (
-    <div className="min-h-screen bg-warm-white flex items-center justify-center px-5 py-16">
+    <div className="min-h-screen bg-bg flex items-center justify-center px-5 py-16">
       <div className="w-full max-w-md">
 
         {/* Logo */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 mb-6">
-            <div className="w-8 h-8 bg-ink rounded-lg flex items-center justify-center">
-              <span className="text-warm-white font-bold text-sm font-serif">S</span>
+            <div className="w-8 h-8 bg-electric rounded flex items-center justify-center">
+              <span className="text-white font-display font-bold text-sm">S</span>
             </div>
-            <span className="text-ink font-bold text-xl tracking-tight font-serif">
-              SPORT<span className="text-gold">VIO</span>
+            <span className="text-ink font-display font-bold text-xl tracking-tightest">
+              SPORT<span className="text-electric">VIO</span>
             </span>
           </div>
-          <div className="pill-gold inline-flex mb-5">
-            🔒 Wholesale Partner Access
+          <div className="pill-electric inline-flex mb-5">
+            <span className="live-dot" />
+            WHOLESALE PARTNER ACCESS
           </div>
-          <h1 className="heading-lg text-3xl mb-3">
-            Unlock Wholesale Pricing
+          <h1 className="heading-lg text-3xl sm:text-4xl mb-3">
+            Unlock Wholesale<br />Pricing.
           </h1>
           <p className="text-ink-muted text-sm leading-relaxed">
             This page contains confidential wholesale rates and partner programme details.
@@ -70,10 +74,10 @@ export default function B2BEmailGate({ children }: { children: React.ReactNode }
         </div>
 
         {/* Gate form */}
-        <form onSubmit={handleSubmit} className="bg-gold-pale border border-gold/20 rounded-2xl p-8 space-y-4">
+        <form onSubmit={handleSubmit} className="bg-bg-soft border border-bg-border rounded-lg p-8 space-y-5">
           <div>
-            <label className="block text-xs font-bold uppercase tracking-widest text-ink-muted mb-2">
-              Business / Store Name
+            <label className="block text-[10px] font-bold uppercase tracking-[0.16em] text-ink-muted mb-2">
+              BUSINESS / STORE NAME
             </label>
             <input
               type="text"
@@ -81,14 +85,12 @@ export default function B2BEmailGate({ children }: { children: React.ReactNode }
               value={company}
               onChange={e => setCompany(e.target.value)}
               placeholder="e.g. Ram Optical, Chennai"
-              className="w-full bg-white border border-warm-border focus:border-gold/50
-                         rounded-xl px-4 py-3.5 text-ink placeholder-ink-light
-                         outline-none transition-colors text-sm"
+              className={inputCls}
             />
           </div>
           <div>
-            <label className="block text-xs font-bold uppercase tracking-widest text-ink-muted mb-2">
-              Business Email
+            <label className="block text-[10px] font-bold uppercase tracking-[0.16em] text-ink-muted mb-2">
+              BUSINESS EMAIL
             </label>
             <input
               type="email"
@@ -96,9 +98,7 @@ export default function B2BEmailGate({ children }: { children: React.ReactNode }
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder="you@yourbusiness.com"
-              className="w-full bg-white border border-warm-border focus:border-gold/50
-                         rounded-xl px-4 py-3.5 text-ink placeholder-ink-light
-                         outline-none transition-colors text-sm"
+              className={inputCls}
             />
           </div>
 
@@ -107,9 +107,9 @@ export default function B2BEmailGate({ children }: { children: React.ReactNode }
           <button
             type="submit"
             disabled={loading}
-            className="btn-primary w-full justify-center text-base mt-2 disabled:opacity-60"
+            className="btn-electric w-full justify-center text-sm mt-2 disabled:opacity-60"
           >
-            {loading ? 'Verifying…' : 'Get Wholesale Access →'}
+            {loading ? 'VERIFYING…' : 'GET WHOLESALE ACCESS →'}
           </button>
 
           <p className="text-ink-muted text-xs text-center pt-1">
@@ -118,10 +118,10 @@ export default function B2BEmailGate({ children }: { children: React.ReactNode }
         </form>
 
         {/* Trust signals */}
-        <div className="mt-8 flex items-center justify-center gap-6 text-ink-muted text-xs flex-wrap">
-          {['50+ Store Partners', 'GST Invoice Provided', 'Respond in 24 hrs'].map(t => (
-            <span key={t} className="flex items-center gap-1">
-              <span className="text-gold">✓</span> {t}
+        <div className="mt-8 flex items-center justify-center gap-6 text-ink-muted text-[10px] font-bold uppercase tracking-[0.14em] flex-wrap">
+          {['50+ STORE PARTNERS', 'GST INVOICE', 'RESPOND IN 24H'].map(t => (
+            <span key={t} className="flex items-center gap-1.5">
+              <span className="text-electric">✓</span> {t}
             </span>
           ))}
         </div>
@@ -132,9 +132,9 @@ export default function B2BEmailGate({ children }: { children: React.ReactNode }
             href="https://wa.me/919876543210?text=Hi%2C%20I%27m%20an%20existing%20SPORTVIO%20partner"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gold hover:text-gold-light underline transition-colors"
+            className="text-electric hover:text-electric-light underline transition-colors font-semibold"
           >
-            WhatsApp us directly
+            WhatsApp us
           </a>
         </p>
       </div>

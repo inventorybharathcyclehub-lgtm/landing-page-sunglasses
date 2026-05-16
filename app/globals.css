@@ -6,87 +6,118 @@
   html { scroll-behavior: smooth; }
 
   body {
-    @apply bg-warm-white text-ink antialiased;
+    @apply bg-bg text-ink antialiased;
+    font-feature-settings: 'ss01', 'cv01', 'cv02';
   }
 
   ::selection {
-    background: rgba(154,123,44,0.15);
-    color: #1A1612;
+    background: rgba(0, 82, 255, 0.18);
+    color: #0A0A0A;
   }
 
-  ::-webkit-scrollbar       { width: 5px; }
-  ::-webkit-scrollbar-track { background: #F5F1EA; }
-  ::-webkit-scrollbar-thumb { background: #C8BEB4; border-radius: 3px; }
+  ::-webkit-scrollbar       { width: 6px; }
+  ::-webkit-scrollbar-track { background: #FAFAFA; }
+  ::-webkit-scrollbar-thumb { background: #A3A3A3; border-radius: 3px; }
 }
 
 @layer components {
 
   /* ── Layout ── */
   .wrap     { @apply max-w-7xl mx-auto px-5 sm:px-8 lg:px-12; }
-  .wrap-md  { @apply max-w-4xl  mx-auto px-5 sm:px-8; }
+  .wrap-md  { @apply max-w-5xl  mx-auto px-5 sm:px-8; }
   .wrap-sm  { @apply max-w-2xl  mx-auto px-5 sm:px-8; }
 
-  /* ── Typography ── */
+  /* ── Typography — Space Grotesk display + Inter body ── */
   .heading-xl {
-    @apply font-serif font-bold leading-[1.06] tracking-tight text-ink;
+    @apply font-display font-bold leading-[0.96] tracking-tightest text-ink uppercase;
   }
   .heading-lg {
-    @apply font-serif font-bold leading-[1.1] tracking-tight text-ink;
+    @apply font-display font-bold leading-[1.02] tracking-tighter text-ink uppercase;
+  }
+  .heading-md {
+    @apply font-display font-bold leading-[1.1] tracking-tight text-ink;
   }
   .body-lg    { @apply text-lg leading-relaxed text-ink-muted; }
   .body-md    { @apply text-base leading-relaxed text-ink-muted; }
-  .label-xs   { @apply text-xs font-semibold uppercase tracking-[0.14em] text-ink-light; }
+  .label-xs   {
+    @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-light;
+  }
+  .label-sm   {
+    @apply text-xs font-bold uppercase tracking-[0.16em] text-ink;
+  }
+  .mono       { @apply font-mono tracking-tight; }
 
   /* ── Buttons ── */
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2
-           bg-ink hover:bg-ink-soft text-warm-white font-semibold
-           px-8 py-4 rounded-full shadow-card
-           transition-all duration-200
+           bg-ink hover:bg-ink-soft text-white font-semibold
+           px-7 py-3.5 rounded-md
+           transition-all duration-150
+           hover:shadow-card-lg active:scale-[0.98];
+  }
+  .btn-electric {
+    @apply inline-flex items-center justify-center gap-2
+           bg-electric hover:bg-electric-light text-white font-bold
+           px-7 py-3.5 rounded-md
+           transition-all duration-150
+           shadow-electric
            hover:-translate-y-0.5 active:translate-y-0;
   }
   .btn-outline {
     @apply inline-flex items-center justify-center gap-2
-           border border-ink/30 hover:border-ink
+           border-2 border-ink hover:bg-ink hover:text-white
            text-ink font-semibold
-           px-8 py-4 rounded-full
-           transition-all duration-200;
+           px-7 py-3 rounded-md
+           transition-all duration-150;
   }
-  .btn-gold {
-    @apply inline-flex items-center justify-center gap-2
-           bg-gold hover:bg-gold-light text-white font-semibold
-           px-8 py-4 rounded-full shadow-gold
-           transition-all duration-200
-           hover:-translate-y-0.5;
+  .btn-gold {  /* legacy alias — now electric */
+    @apply btn-electric;
   }
 
   /* ── Pill labels ── */
   .pill {
     @apply inline-flex items-center gap-1.5
-           text-xs font-semibold uppercase tracking-[0.12em]
-           border border-warm-border text-ink-muted
-           px-3.5 py-1.5 rounded-full;
+           text-[10px] font-bold uppercase tracking-[0.16em]
+           border border-bg-border bg-bg text-ink-muted
+           px-3 py-1.5 rounded;
   }
-  .pill-gold {
+  .pill-electric {
     @apply inline-flex items-center gap-1.5
-           text-xs font-semibold uppercase tracking-[0.12em]
-           bg-gold-pale border border-gold/30 text-gold-deep
-           px-3.5 py-1.5 rounded-full;
+           text-[10px] font-bold uppercase tracking-[0.16em]
+           bg-electric-pale border border-electric/25 text-electric-deep
+           px-3 py-1.5 rounded;
+  }
+  .pill-gold {  /* legacy alias */
+    @apply pill-electric;
+  }
+  .pill-live {
+    @apply inline-flex items-center gap-1.5
+           text-[10px] font-bold uppercase tracking-[0.16em]
+           bg-forest-pale border border-forest/25 text-forest
+           px-3 py-1.5 rounded;
   }
 
   /* ── Cards ── */
-  .card      { @apply bg-white border border-warm-border rounded-2xl shadow-card; }
-  .card-soft { @apply bg-warm-cream border border-warm-border rounded-2xl; }
+  .card      { @apply bg-bg border border-bg-border rounded-lg; }
+  .card-soft { @apply bg-bg-soft border border-bg-border rounded-lg; }
 
   /* ── Divider ── */
-  .hr { @apply border-t border-warm-border; }
+  .hr { @apply border-t border-bg-border; }
 
-  /* ── Gold text gradient ── */
+  /* ── Legacy gold-shine alias — now flat electric ── */
   .text-gold-shine {
-    background: linear-gradient(135deg, #9A7B2C 0%, #D4AA52 50%, #9A7B2C 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #0052FF;
+  }
+
+  /* ── Technical spec stripe ── */
+  .spec-stripe {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 8px,
+      rgba(0,82,255,0.04) 8px,
+      rgba(0,82,255,0.04) 16px
+    );
   }
 }
 
@@ -101,6 +132,17 @@
 /* ── FAQ accordion arrow ── */
 details summary::-webkit-details-marker { display: none; }
 
-/* ── Sticky buy bar ── */
-.buy-bar-show { transform: translateY(0); }
-.buy-bar-hide { transform: translateY(100%); }
+/* ── Live pulse dot ── */
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #059669;
+  box-shadow: 0 0 0 0 rgba(5,150,105,0.5);
+  animation: livePulse 2s infinite;
+}
+@keyframes livePulse {
+  0%   { box-shadow: 0 0 0 0 rgba(5,150,105,0.55); }
+  70%  { box-shadow: 0 0 0 10px rgba(5,150,105,0); }
+  100% { box-shadow: 0 0 0 0 rgba(5,150,105,0); }
+}

@@ -15,20 +15,22 @@ export default function StickyBuyBar() {
   return (
     <div
       className={`fixed bottom-0 left-0 right-0 z-40 md:hidden
-        bg-warm-white/98 backdrop-blur-md border-t border-warm-border shadow-card-lg
+        bg-ink text-white border-t border-ink-soft
         transition-transform duration-300 ease-out
         ${visible ? 'translate-y-0' : 'translate-y-full'}`}
     >
-      <div className="flex items-center gap-3 px-5 py-3.5">
+      <div className="flex items-center gap-3 px-5 py-3">
         <div className="flex-1">
           <div className="flex items-baseline gap-2">
-            <span className="text-ink-light text-xs line-through">₹1,800</span>
-            <span className="text-ink font-bold text-xl font-serif">₹899</span>
+            <span className="text-white/50 text-xs line-through font-mono">₹1,800</span>
+            <span className="text-white font-display font-bold text-xl tracking-tightest font-mono">₹899</span>
           </div>
-          <div className="text-forest-light text-xs font-medium">Save ₹901 · Free delivery · COD</div>
+          <div className="text-electric text-[10px] font-bold uppercase tracking-[0.16em]">
+            FREE DELIVERY · COD · UV400
+          </div>
         </div>
-        <Link href="#order-section" className="btn-primary text-sm py-3 px-6 flex-shrink-0">
-          Buy Now →
+        <Link href="#order-section" className="btn-electric text-xs py-3 px-5 flex-shrink-0">
+          BUY NOW →
         </Link>
       </div>
     </div>
